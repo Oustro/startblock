@@ -1,3 +1,6 @@
+import OnboardForm from "@/components/spc/forms/onboardForm";
+import LogoNav from "@/components/spc/navbars/logoNav";
+
 import { auth } from "@/utils/auth"
 import { redirect } from "next/navigation";
 
@@ -14,7 +17,8 @@ export default async function Onboard() {
   
   return (
     <main>
-      hi Onboard
+      <LogoNav />
+      <OnboardForm />
     </main>
   );
 }

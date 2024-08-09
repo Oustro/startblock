@@ -18,7 +18,7 @@ export default function SigninForm() {
   const [email, setEmail] = useState("");
   const [code, setCode] = useState("");
 
-  const router = useRouter()
+  const router = useRouter();
 
   async function handleSubmitEmail(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -82,7 +82,7 @@ export default function SigninForm() {
             disabled={loading}
             onChange={(e) => setEmail(e.target.value)}
             required 
-            className="mt-4"
+            className="mt-3"
             />
             <ActionButton
             type="submit"
@@ -101,13 +101,13 @@ export default function SigninForm() {
             <h3 className="mt-8 font-heading">Verification Code</h3>
             <Input 
             type="text" 
-            placeholder="Enter code sent to your email..." 
+            placeholder="Enter the code sent to your email..." 
             name="email" 
             value={code}
             disabled={loading}
             onChange={(e) => setCode(e.target.value)}
             required 
-            className="mt-4"
+            className="mt-3"
             />
             <ActionButton
             type="submit"
