@@ -3,7 +3,7 @@
 import prisma from "@/utils/db";
 import { auth } from "@/utils/auth";
 
-import { nanoid, customAlphabet } from "nanoid";
+import { customAlphabet } from "nanoid";
 
 export async function createTeam(teamName: string): Promise<undefined> {
   const session = await auth();
