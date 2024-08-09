@@ -7,18 +7,11 @@ export function cn(...inputs: ClassValue[]) {
 
 export function createGradient() {
   const gradients = [
-    "from-yellow-400 via-red-500 to-pink-500",
-    "from-green-400 via-blue-500 to-indigo-500",
-    "from-purple-400 via-pink-500 to-red-500",
-    "from-yellow-400 via-green-500 to-blue-500",
-    "from-blue-400 via-indigo-500 to-purple-500",
-    "from-red-400 via-yellow-500 to-green-500",
-    "from-pink-400 via-purple-500 to-indigo-500",
-    "from-green-400 via-yellow-500 to-red-500",
-    "from-blue-400 via-green-500 to-blue-500",
-    "from-indigo-400 via-purple-500 to-pink-500",
-    "from-red-400 via-pink-500 to-purple-500",
-    "from-yellow-400 via-green-500 to-blue-500",
+    "linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);",
+    "linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);",
+    "linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);",
+    "linear-gradient(0deg, #08AEEA 0%, #2AF598 100%);",
+    "linear-gradient(0deg, #08AEEA 0%, #2AF598 100%);",
   ];
 
   return gradients[Math.floor(Math.random() * gradients.length)];
