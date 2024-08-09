@@ -1,5 +1,8 @@
-import { auth } from "@/utils/auth"
+import { auth } from "@/utils/auth";
 import { redirect } from "next/navigation";
+
+import SideDashboardNav from "@/components/spc/navbars/dashboard/side";
+import TopDashboardNav from "@/components/spc/navbars/dashboard/top";
 
 export default async function DashboardLayout({ children,
 }: Readonly<{
@@ -17,7 +20,11 @@ export default async function DashboardLayout({ children,
   
   return (
     <main>
-      {children}
+      <TopDashboardNav />
+      <SideDashboardNav />
+      <div className="ml-24 mt-16 bg-green">
+        {children}
+      </div>
     </main>
   );
 }

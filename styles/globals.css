@@ -9,5 +9,6 @@
 }
 
 body {
-
+  color: rgb(var(--primary-text-color));
+  background: rgb(var(--primary-background-color));
 }
