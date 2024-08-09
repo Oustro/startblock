@@ -22,7 +22,7 @@ export default async function DashboardLayout({ children,
     <main>
       <TopDashboardNav />
       <SideDashboardNav />
-      <div className="ml-24 mt-16 bg-green">
+      <div className="ml-24 mt-20">
         {children}
       </div>
     </main>

@@ -1,6 +1,7 @@
 import { auth } from "@/utils/auth";
 
 import Logo from "@/components/ui/logo";
+import ActionWord from "@/components/ui/action-word";
 import { SignoutForm } from "../../forms/signoutForm";
 
 import {
@@ -10,15 +11,22 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
+
+
 export default async function TopDashboardNav() {
   const session = await auth();
 
+
+
   return (
-    <nav className="w-full h-16 fixed top-0 flex justify-between items-center px-6">
+    <nav className="w-full h-20 fixed top-0 bg-white flex justify-between items-center px-6">
       <Logo 
       link="/dashboard"
       />
-      <div>
+      <div className="flex items-center gap-8">
+        <ActionWord>
+          Feedback
+        </ActionWord>
         <DropdownMenu>
           <DropdownMenuTrigger
           className="outline-none"
@@ -27,7 +35,7 @@ export default async function TopDashboardNav() {
             style={{
               background: session?.user.gradient,
             }}
-            className="h-8 w-8 rounded-full" 
+            className="h-8 w-8 rounded-full border border-our-gray" 
             />
           </DropdownMenuTrigger>
           <DropdownMenuContent

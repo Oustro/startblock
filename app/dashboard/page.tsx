@@ -1,8 +1,8 @@
 export default async function Dashboard() {
   
   return (
-    <main>
-      hi Dashboard
+    <main className="p-8">
+      <h1 className="text-4xl font-special">Dashboard</h1>
     </main>
   );
 }
