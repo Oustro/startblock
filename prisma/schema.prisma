@@ -16,6 +16,7 @@ model User {
   onboarded     Boolean         @default(false)
   name          String?
   gradient      String?
+  stripeId      String?
   ownedTeams    Team[]         @relation("OwnerTeams")
   memberTeams   Team[]         @relation("MemberTeams")
   createdAt DateTime @default(now())

@@ -11,6 +11,7 @@ declare module "next-auth" {
       id: string;
       name: string | undefined;
       gradient: string | undefined;
+      stripeId: string | undefined;
     };
   }
 }
