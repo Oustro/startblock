@@ -67,7 +67,6 @@ model Team {
   owners    User[]   @relation("OwnerTeams")
   members   User[]   @relation("MemberTeams")
   activated Boolean  @default(false)
-  logo      String?
   shareId   String   @unique
   publicId  String   @unique
 }

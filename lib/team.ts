@@ -42,9 +42,17 @@ export async function getTeamForUser(): Promise<team | undefined> {
     },
   });
 
-  if (team?.ownedTeams.length !== 0) {
-    return team?.ownedTeams[0];
-  } else {
-    return team?.memberTeams[0];
+  if (!team) {
+    return;
   }
+
+  let type = "member";
+  if (team?.ownedTeams.length !== 0) {
+    type = "owner";
+  }
+
+  return {
+    ...(team.memberTeams[0] || team.ownedTeams[0]),
+    type: type,
+  };
 }

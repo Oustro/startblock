@@ -28,7 +28,28 @@ export default function JobTable() {
           <TableCell className="font-medium px-0"><Ellipsis /></TableCell>
           <TableCell className="font-medium">Product Engineer</TableCell>
           <TableCell>Active</TableCell>
+          <TableCell>20</TableCell>
+          <TableCell className="text-right px-0">View Applicants &rarr;</TableCell>
+        </TableRow>
+        <TableRow className="hover:bg-transparent border-our-gray">
+          <TableCell className="font-medium px-0"><Ellipsis /></TableCell>
+          <TableCell className="font-medium">Sr. Software Engineer</TableCell>
+          <TableCell>Active</TableCell>
           <TableCell>12</TableCell>
+          <TableCell className="text-right px-0">View Applicants &rarr;</TableCell>
+        </TableRow>
+        <TableRow className="hover:bg-transparent border-our-gray">
+          <TableCell className="font-medium px-0"><Ellipsis /></TableCell>
+          <TableCell className="font-medium">CFO</TableCell>
+          <TableCell>Active</TableCell>
+          <TableCell>3</TableCell>
+          <TableCell className="text-right px-0">View Applicants &rarr;</TableCell>
+        </TableRow>
+        <TableRow className="hover:bg-transparent border-our-gray">
+          <TableCell className="font-medium px-0"><Ellipsis /></TableCell>
+          <TableCell className="font-medium">Social Media Manager</TableCell>
+          <TableCell>Active</TableCell>
+          <TableCell>18</TableCell>
           <TableCell className="text-right px-0">View Applicants &rarr;</TableCell>
         </TableRow>
       </TableBody>

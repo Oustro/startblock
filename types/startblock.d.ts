@@ -4,5 +4,5 @@ export interface team {
   activated: boolean;
   shareId: string;
   publicId: string;
-  logo: string | null;
+  type: string;
 }

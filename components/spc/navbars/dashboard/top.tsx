@@ -13,7 +13,7 @@ import {
 
 import Link from "next/link";
 
-import { ChevronRight } from 'lucide-react';
+import { Slash } from 'lucide-react';
 
 import { getTeamForUser } from "@/lib/team";
 
@@ -28,13 +28,19 @@ export default async function TopDashboardNav() {
         <Logo 
         link="/dashboard"
         />
-        <ChevronRight />
-        <h1 className="font-special text-xl">{team?.name}</h1>
-        <ChevronRight />
+        <Slash />
+        <h1 className="font-heading text-lg">{team?.name}</h1>
+        <Slash />
         {team?.activated ? (
-          <p className="text-sm px-2 py-1 bg-green-100 border border-green-300">Active</p>
+          <p className="text-sm flex items-center gap-2">
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+            Active
+          </p>
         ) : (
-          <p className="text-sm px-2 py-1 bg-slate-100 border border-our-gray">Inactive</p>
+          <p className="text-sm flex text-our-gray items-center gap-2 cursor-no-drop">
+            <span className="relative inline-flex rounded-full h-2 w-2 border border-our-gray"></span>
+            Activation Required
+          </p>
         )}
       </div>
       <div className="flex items-center gap-8">
