@@ -17,6 +17,7 @@ export default async function Dashboard() {
         <ActivateLink 
         isOwner={team?.type === "owner" ? true : false} 
         imageSrc="/dashboard/dashboard-ex.png"
+        teamId={team?.id as string}
         />
       )}
     </main>

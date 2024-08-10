@@ -1,9 +1,37 @@
+import { auth } from "@/utils/auth";
+
 import ActionButton from "./action-button";
 
 import Image from "next/image";
+import Link from "next/link";
+import Stripe from "stripe";
 
-export default function ActivateLink({ isOwner, imageSrc } : { isOwner: boolean, imageSrc: string }) {
+export default async function ActivateLink({ isOwner, imageSrc, teamId } : { isOwner: boolean, imageSrc: string, teamId: string }) {
+  const session = await auth();
 
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
+
+  const stripeSession = await stripe.checkout.sessions.create({
+    line_items: [
+      {
+        price: process.env.STRIPE_PRICE_ID as string,
+        quantity: 1
+      },
+      {
+        price: process.env.STRIPE_INTERVIEW_ID as string,
+      }
+    ],
+    customer: session?.user.stripeId as string,
+    mode: 'subscription',
+    success_url: 'http://localhost:3000/dashboard',
+    cancel_url: 'http://localhost:3000/dashboard',
+    allow_promotion_codes: true,
+    subscription_data: {
+      metadata: {
+        teamId: teamId
+      }
+    }
+  })
 
   return (
     <div>
@@ -19,11 +47,15 @@ export default function ActivateLink({ isOwner, imageSrc } : { isOwner: boolean,
             alt="Dashboard example"
             className="border border-our-gray mt-4 w-full "
             />
-            <ActionButton
-            className="mt-8"
+            <Link 
+            href={stripeSession.url as string}
             >
-              Activate Team
-            </ActionButton>
+              <ActionButton
+              className="mt-8"
+              >
+                Activate Team
+              </ActionButton>
+            </Link>
           </div> 
         </div> 
       ) : (
