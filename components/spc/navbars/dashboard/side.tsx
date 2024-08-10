@@ -8,7 +8,7 @@ import { Users, House, Settings, Shapes } from 'lucide-react';
 
 export default function SideDashboardNav() {
   return (
-    <nav className="w-24 bg-white flex flex-col items-center h-screen pt-8 gap-4 fixed">
+    <nav className="w-24 bg-white flex z-20 flex-col items-center h-screen pt-8 gap-4 fixed">
       <TabLink 
       link="/dashboard" 
       activate={usePathname() === "/dashboard"} 

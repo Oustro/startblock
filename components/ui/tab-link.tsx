@@ -26,6 +26,7 @@ export default function TabLink({ link, children, className, activate, label } :
         <TooltipContent
         align="center"
         side="right"
+        className="z-50"
         >
           <p>{label}</p>
         </TooltipContent>

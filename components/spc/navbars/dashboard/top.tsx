@@ -23,7 +23,7 @@ export default async function TopDashboardNav() {
   const team = await getTeamForUser();
 
   return (
-    <nav className="w-full h-20 fixed top-0 bg-white flex justify-between items-center px-6">
+    <nav className="w-full h-20 z-20 fixed top-0 bg-white flex justify-between items-center px-6">
       <div className="flex items-center gap-6">
         <Logo 
         link="/dashboard"
