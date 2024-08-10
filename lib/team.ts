@@ -5,6 +5,8 @@ import { auth } from "@/utils/auth";
 
 import { customAlphabet } from "nanoid";
 
+import { team } from "@/types/startblock";
+
 export async function createTeam(teamName: string): Promise<undefined> {
   const session = await auth();
 
@@ -25,4 +27,24 @@ export async function createTeam(teamName: string): Promise<undefined> {
   });
 
   return;
+}
+
+export async function getTeamForUser(): Promise<team | undefined> {
+  const session = await auth();
+
+  const team = await prisma.user.findUnique({
+    where: {
+      id: session?.user.id,
+    },
+    include: {
+      ownedTeams: true,
+      memberTeams: true,
+    },
+  });
+
+  if (team?.ownedTeams.length !== 0) {
+    return team?.ownedTeams[0];
+  } else {
+    return team?.memberTeams[0];
+  }
 }
