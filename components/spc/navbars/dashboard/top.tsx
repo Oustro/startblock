@@ -11,6 +11,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
+import Link from "next/link";
+
 import { ChevronRight } from 'lucide-react';
 
 import { getTeamForUser } from "@/lib/team";
@@ -28,6 +30,7 @@ export default async function TopDashboardNav() {
         />
         <ChevronRight />
         <h1 className="font-special text-xl">{team?.name}</h1>
+        <ChevronRight />
         {team?.activated ? (
           <p className="text-sm px-2 py-1 bg-green-100 border border-green-300">Active</p>
         ) : (
@@ -57,7 +60,11 @@ export default async function TopDashboardNav() {
               <h6 className="font-heading">{session?.user.name}</h6>
               <p className="text-our-gray text-sm">{session?.user.email}</p>
             </div>
-            <DropdownMenuItem>My Account</DropdownMenuItem>
+            <Link
+            href="/dashboard/account"
+            >
+              <DropdownMenuItem>My Account</DropdownMenuItem>
+            </Link>
             <DropdownMenuItem>Help Center</DropdownMenuItem>
             <DropdownMenuItem>Changelog</DropdownMenuItem>
             <DropdownMenuItem>
