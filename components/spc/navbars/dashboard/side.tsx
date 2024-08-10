@@ -37,6 +37,10 @@ export default function SideDashboardNav() {
       >
         <Settings className="h-6 w-6" />
       </TabLink>
+      <div className="fixed bottom-6 text-center text-xs p-2">
+        <p>"Do everything in love."</p>
+        <p className="mt-2">1 Cor 16:14</p>
+      </div>
     </nav>
   )
 }
