@@ -8,6 +8,10 @@ import Stripe from "stripe";
 export async function onboardUserStepOne(name: string): Promise<undefined> {
   const session = await auth();
 
+  if (!session?.user) {
+    return;
+  }
+
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
 
   const customer = await stripe.customers.create({
@@ -31,6 +35,10 @@ export async function onboardUserStepOne(name: string): Promise<undefined> {
 
 export async function onboardUserStepTwo(): Promise<undefined> {
   const session = await auth();
+
+  if (!session?.user) {
+    return;
+  }
 
   await prisma.user.update({
     where: {

@@ -10,6 +10,10 @@ import { team } from "@/types/startblock";
 export async function createTeam(teamName: string): Promise<undefined> {
   const session = await auth();
 
+  if (!session?.user) {
+    return;
+  }
+
   await prisma.team.create({
     data: {
       name: teamName,
@@ -31,6 +35,10 @@ export async function createTeam(teamName: string): Promise<undefined> {
 
 export async function getTeamForUser(): Promise<team | undefined> {
   const session = await auth();
+
+  if (!session?.user) {
+    return;
+  }
 
   const team = await prisma.user.findUnique({
     where: {

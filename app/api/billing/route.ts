@@ -32,6 +32,25 @@ export async function POST(request: NextRequest) {
           activated: false,
         },
       });
+
+      const customer_email = await prisma.user.findFirst({
+        where: {
+          stripeId: event.data.object.customer as string,
+        },
+        select: {
+          email: true,
+        },
+      });
+
+      const client = new Client(process.env.AUTH_POSTMARK_KEY as string);
+
+      client.sendEmail({
+        From: "StartBlock <howdy@useziggy.com>",
+        To: customer_email?.email as string,
+        Subject: "StartBlock Subscription Cancelled",
+        TextBody:
+          "Howdy,\n\nWe're writing to let you know that your subscription to StartBlock has been successfully cancelled. We're sorry to see you go and we hope to see you again soon!\n\nThanks for the memories,\nTeam StartBlock",
+      });
     } else if (event.type === "invoice.payment_failed") {
       if (
         event.data.object.attempt_count === 1 ||
@@ -42,7 +61,7 @@ export async function POST(request: NextRequest) {
         client.sendEmail({
           From: "StartBlock <howdy@useziggy.com>",
           To: event.data.object.customer_email as string,
-          Subject: "StartBlock Verification Code",
+          Subject: "StartBlock Payment Failed",
           TextBody:
             "Howdy,\n\nWe're having trouble processing your payment. Please update your payment information. Failure to do so, will result in deactivation of your team on StartBlock.\n\nThanks,\nTeam StartBlock",
         });
