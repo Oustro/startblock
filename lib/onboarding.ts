@@ -9,7 +9,7 @@ export async function onboardUserStepOne(name: string): Promise<undefined> {
   const session = await auth();
 
   if (!session?.user) {
-    return;
+    throw new Error("You must be logged in to access this resource.");
   }
 
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
@@ -37,7 +37,7 @@ export async function onboardUserStepTwo(): Promise<undefined> {
   const session = await auth();
 
   if (!session?.user) {
-    return;
+    throw new Error("You must be logged in to access this resource.");
   }
 
   await prisma.user.update({

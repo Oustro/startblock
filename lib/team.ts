@@ -11,7 +11,7 @@ export async function createTeam(teamName: string): Promise<undefined> {
   const session = await auth();
 
   if (!session?.user) {
-    return;
+    throw new Error("You must be logged in to access this resource.");
   }
 
   await prisma.team.create({
@@ -37,7 +37,7 @@ export async function getTeamForUser(): Promise<team | undefined> {
   const session = await auth();
 
   if (!session?.user) {
-    return;
+    throw new Error("You must be logged in to access this resource.");
   }
 
   const team = await prisma.user.findUnique({
