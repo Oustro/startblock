@@ -7,19 +7,32 @@ export default async function Dashboard() {
 
   const team = await getTeamForUser();
 
-  return (
-    <main className="p-8">
-      <h1 className="text-4xl font-special">Dashboard</h1>
-
-      {team?.activated ? (
-        <JobTable />
-      ) : (
+  if (!team?.activated) {
+    return (
+      <main className="p-8">
+        <h1 className="text-4xl font-special">Dashboard</h1>
         <ActivateLink 
         isOwner={team?.type === "owner" ? true : false} 
         imageSrc="/dashboard/dashboard-ex.png"
         teamId={team?.id as string}
         />
-      )}
-    </main>
-  );
+      </main>
+    )
+  }
+  else if (team.jobs.length === 0) {
+    return (
+      <main className="p-8">
+        <h1 className="text-4xl font-special">Dashboard</h1>
+        <p>You have no jobs yet.</p>
+      </main>
+    )
+  }
+  else {
+    return (
+      <main className="p-8">
+        <h1 className="text-4xl font-special">Dashboard</h1>
+        <JobTable />
+      </main>
+    )
+  }
 }

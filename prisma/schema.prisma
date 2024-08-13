@@ -70,4 +70,15 @@ model Team {
   activated Boolean  @default(false)
   shareId   String   @unique
   publicId  String   @unique
+  jobs      Job[]
+}
+
+model Job {
+  id        String   @id @default(cuid())
+  name      String
+  questions String[]
+  status    String
+  applicant Int
+  teamId    String
+  team      Team     @relation(fields: [teamId], references: [id])
 }

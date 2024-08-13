@@ -45,8 +45,16 @@ export async function getTeamForUser(): Promise<team | undefined> {
       id: session?.user.id,
     },
     include: {
-      ownedTeams: true,
-      memberTeams: true,
+      ownedTeams: {
+        include: {
+          jobs: true,
+        },
+      },
+      memberTeams: {
+        include: {
+          jobs: true,
+        },
+      },
     },
   });
 

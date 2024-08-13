@@ -5,4 +5,13 @@ export interface team {
   shareId: string;
   publicId: string;
   type: string;
+  jobs: job[];
+}
+
+export interface job {
+  id: string;
+  name: string;
+  questions: string[];
+  status: string;
+  applicant: number;
 }
