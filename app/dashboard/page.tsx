@@ -22,21 +22,13 @@ export default async function Dashboard() {
       </main>
     )
   }
-  else if (team?.jobs.length === 0) {
-    return (
-      <main className="p-8">
-        <h1 className="text-4xl font-special">Hiring Dashboard</h1>
-        <div className="mt-16 text-center">
-          <p className="text-2xl font-heading mb-16">No jobs posted...yet.</p>
-          <CreateJob>Create Your first job</CreateJob>
-        </div>
-      </main>
-    )
-  }
   else {
     return (
       <main className="p-8">
-        <h1 className="text-4xl font-special">Hiring Dashboard</h1>
+        <div className="flex justify-between">
+          <h1 className="text-4xl font-special">Hiring Dashboard</h1>
+          <CreateJob>Create New Job</CreateJob>
+        </div>
         <JobTable />
       </main>
     )

@@ -9,7 +9,11 @@ import {
   TableRow,
 } from "@/components/ui/table"
 
-export default function JobTable() {
+import { getTeamForUser } from "@/lib/team";
+
+export default async function JobTable() {
+
+  const team = await getTeamForUser();
 
   return (
     <Table className="mt-8 px-12">
@@ -21,7 +25,12 @@ export default function JobTable() {
         </TableRow>
       </TableHeader>
       <TableBody>
-        <TableRow className="hover:bg-transparent border-our-gray">
+        {team?.jobs.length === 0 ? (
+          <TableRow className="hover:bg-white border-our-gray hover:bg-transparent">
+            <TableCell colSpan={3} className="text-center">No jobs found.</TableCell>
+          </TableRow>
+        ) : (
+          <TableRow className="hover:bg-white border-our-gray">
           <TableCell className="font-medium">Product Engineer</TableCell>
           <TableCell>Active</TableCell>
           <TableCell>20</TableCell>
@@ -31,16 +40,7 @@ export default function JobTable() {
             </EllipsisDropdown>
           </TableCell>
         </TableRow>
-        <TableRow className="hover:bg-transparent border-our-gray">
-          <TableCell className="font-medium">Product Engineer</TableCell>
-          <TableCell>Active</TableCell>
-          <TableCell>20</TableCell>
-          <TableCell className="flex justify-end">
-            <EllipsisDropdown>
-              hi
-            </EllipsisDropdown>
-          </TableCell>
-        </TableRow>
+        )}
       </TableBody>
     </Table>
   )
