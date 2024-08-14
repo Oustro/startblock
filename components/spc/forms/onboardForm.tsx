@@ -47,12 +47,11 @@ export default function OnboardForm() {
   return (
     <div className="h-screen justify-center items-center flex-col flex">
       <div className="w-96">
-        <h1 className="text-3xl font-heading">Let's set up your account</h1>
-        <h3 className="text-lg mt-8 text-our-gray font-heading">Hooray, you're almost there.</h3>
         {step === 1 && (
           <form 
           onSubmit={() => setStep(2)}
           >
+            <h1 className="text-3xl font-heading">Let's set up your account</h1>
             <h3 className="mt-8 font-heading">Your Name</h3>
             <Input 
             type="text" 
@@ -75,9 +74,34 @@ export default function OnboardForm() {
         )}
 
         {step === 2 && (
+          <div>
+            <h1 className="text-3xl font-heading">How do you want to use StartBlock?</h1>
+            <div className="text-center">
+              <ActionButton
+              type="button"
+              onClick={() => setStep(3)}
+              disabled={loading}
+              className="mt-8"
+              >
+                I want to set up a new team
+              </ActionButton>
+              <ActionWord
+              className="mt-8"
+              type="button"
+              disabled={loading}
+              onClick={() => setStep(4)}
+              >
+                I want to join an existing team
+              </ActionWord>
+            </div>
+          </div>
+        )}
+
+        {step === 3 && (
           <form
           onSubmit={handleSubmitCreateTeam}
           >
+            <h1 className="text-3xl font-heading">Create a new team</h1>
             <h3 className="mt-8 font-heading">Team Name</h3>
             <Input
             type="text"
@@ -99,17 +123,16 @@ export default function OnboardForm() {
             <ActionWord
             className="mt-8"
             type="button"
-            disabled={loading}
-            onClick={() => setStep(3)}
+            onClick={() => setStep(4)}
             >
               I want to join an existing team
             </ActionWord>
           </form>
         )}
 
-        {step === 3 && (
-          <form
-          >
+        {step === 4 && (
+          <form>
+            <h1 className="text-3xl font-heading">Join an existing team</h1>
             <h3 className="mt-8 font-heading">Team Share ID</h3>
             <Input
             type="text"
@@ -127,9 +150,9 @@ export default function OnboardForm() {
             <ActionWord
             className="mt-8"
             type="button"
-            onClick={() => setStep(2)}
+            onClick={() => setStep(3)}
             >
-              I want to create a new team
+              I want to set up a new team
             </ActionWord>
           </form>
         )}

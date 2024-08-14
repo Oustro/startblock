@@ -37,16 +37,7 @@ export default async function ActivateLink({ isOwner, imageSrc, teamId } : { isO
     <div>
       {isOwner ? (
         <div className="mt-16 text-center">
-          <p className="text-2xl font-heading">Please activate your team.</p>
-          <Image
-          src="/dashboard/activate.png"
-          alt="Activate your team"
-          priority
-          width={300}
-          draggable={false}
-          height={300}
-          className="mx-auto mt-8 mb-8"
-          />
+          <p className="text-2xl font-heading mb-16">Please activate your team.</p>
           <Link 
           href={stripeSession.url as string}
           >
@@ -60,15 +51,6 @@ export default async function ActivateLink({ isOwner, imageSrc, teamId } : { isO
       ) : (
         <div className="mt-16 text-center">
           <p className="text-2xl font-heading">Please activate your team.</p>
-          <Image
-          src="/dashboard/activate.png"
-          alt="Activate your team"
-          priority
-          width={300}
-          draggable={false}
-          height={300}
-          className="mx-auto mt-8 mb-8"
-          />
         </div>
       )}
     </div>

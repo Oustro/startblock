@@ -27,16 +27,7 @@ export default async function Dashboard() {
       <main className="p-8">
         <h1 className="text-4xl font-special">Hiring Dashboard</h1>
         <div className="mt-16 text-center">
-          <p className="text-2xl font-heading">No jobs posted...yet.</p>
-          <Image
-          src="/dashboard/no-jobs.png"
-          alt="No jobs"
-          priority
-          width={300}
-          draggable={false}
-          height={300}
-          className="mx-auto mt-8 mb-8"
-          />
+          <p className="text-2xl font-heading mb-16">No jobs posted...yet.</p>
           <CreateJob>Create Your first job</CreateJob>
         </div>
       </main>
