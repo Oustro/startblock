@@ -2,77 +2,87 @@
 
 import { useState } from "react"
 
-import Input from "@/components/ui/input-field"
+import Input from "@/components/ui/input-field";
+import TextArea from "@/components/ui/textarea-field";
 import ActionWord from "@/components/ui/action-word";
 
-export default function CreateJobForm() {
+export default function CreateJobForm({ closeModal } : { closeModal: Function }) {
   const [step, setStep] = useState(1)
   const [loading, setLoading] = useState(false)
 
   const [jobTitle, setJobTitle] = useState("")
   const [jobDescription, setJobDescription] = useState("")
-  const [jobResponsibilities, setJobResponsibilities] = useState("")
   const [jobRequirements, setJobRequirements] = useState("")
+  const [jobLocation, setJobLocation] = useState("")
 
   return (
-    <div>
-      {step === 1 && (
+    <div className="flex justify-between gap-4">
+      <div className="w-full p-4">
         <form>
-          <h3 className="font-heading">Title</h3>
-          <Input
-          type="text"
-          placeholder="Enter the job title..."
-          name="title"
-          disabled={loading}
+          <h1 className="text-3xl font-heading">Create a new job</h1>
+          <p className="mt-4 text-our-gray">All fields are required</p>
+          <h3 className="mt-8 font-heading">Title</h3>
+          <Input 
+          type="text" 
+          placeholder="Enter the job title..." 
           value={jobTitle}
           onChange={(e) => setJobTitle(e.target.value)}
-          required
+          name="title" 
+          disabled={loading}
+          required 
           className="mt-3"
           />
-          <h3 className="font-heading mt-8">Description</h3>
-          <textarea
-          placeholder="Enter the job description..."
-          name="Description"
-          disabled={loading}
+          <h3 className="mt-8 font-heading">Description</h3>
+          <TextArea 
+          name="description"
+          placeholder="Tell us about the job..." 
           value={jobDescription}
           onChange={(e) => setJobDescription(e.target.value)}
-          required
-          className="mt-3 h-32 px-3 py-2 border bg-transparent text-sm font-normal w-full border-our-gray outline-none"
-          />
-          <h3 className="font-heading mt-8">Responsibilites</h3>
-          <textarea
-          placeholder="Enter the job description..."
-          name="Responsibilities"
           disabled={loading}
-          value={jobResponsibilities}
-          onChange={(e) => setJobResponsibilities(e.target.value)}
-          required
-          className="mt-3 h-32 px-3 py-2 border bg-transparent text-sm font-normal w-full border-our-gray outline-none"
+          required 
+          className="mt-3"
           />
-
-          <h3 className="font-heading mt-8">Requirements</h3>
-          <textarea
-          placeholder="Enter the job description..."
-          name="Requirements"
-          disabled={loading}
+          <h3 className="mt-8 font-heading">Requirements</h3>
+          <TextArea
+          name="requirements"
+          placeholder="Tell us what you are looking for..." 
           value={jobRequirements}
           onChange={(e) => setJobRequirements(e.target.value)}
-          required
-          className="mt-3 h-32 px-3 py-2 border bg-transparent text-sm font-normal w-full border-our-gray outline-none"
+          disabled={loading}
+          required 
+          className="mt-3"
+          />
+          <h3 className="mt-8 font-heading">Location</h3>
+          <Input 
+          type="text" 
+          placeholder="Where is the job located..." 
+          value={jobLocation}
+          onChange={(e) => setJobLocation(e.target.value)}
+          name="location" 
+          disabled={loading}
+          required 
+          className="mt-3"
           />
           <div className="flex justify-between mt-8">
-            <ActionWord>
+            <ActionWord 
+            onClick={() => closeModal(false)}
+            type="button"
+            >
               Cancel
             </ActionWord>
-            <button
-            type="submit"
+            <ActionWord 
+            onClick={() => setStep(2)}
             className="bg-black text-white hover:bg-off-black transition-all p-2 font-heading text-sm"
             >
-              Next
-            </button>
+              Continue
+            </ActionWord>
           </div>
         </form>
-      )}
+      </div>
+      <div className="w-full py-4 px-8 border-l border-our-gray h-[750px] sticky top-0">
+        <h1 className={`text-3xl font-heading ${!jobTitle && "text-our-gray" }`}>{jobTitle || "Job Title"}</h1>
+        <p className="whitespace-pre-wrap">{jobDescription}</p>
+      </div>
     </div>
   )
 }

@@ -4,8 +4,6 @@ import ActivateLink from "@/components/ui/activate-link";
 import JobTable from "@/components/spc/jobs/jobTable";
 import CreateJob from "@/components/spc/jobs/createJob";
 
-import Image from "next/image";
-
 export default async function Dashboard() {
 
   const team = await getTeamForUser();

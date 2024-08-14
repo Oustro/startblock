@@ -1,27 +1,34 @@
+"use client";
+
+import { useState } from "react"
+
 import {
   Dialog,
   DialogContent,
-  DialogHeader,
-  DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
 
 import CreateJobForm from "../forms/createJobForm"
 
 export default function CreateJob({ children } : { children?: React.ReactNode }) {
+  const [openModal, setOpenModal] = useState(false)
+
   return (
-    <div>
-      <Dialog>
-        <DialogTrigger className="bg-black text-white hover:bg-off-black disabled:bg-off-black transition-all p-2 font-heading text-sm">
-          {children}
-        </DialogTrigger>
-        <DialogContent className="rounded-none bg-white h-[500px] overflow-scroll">
-          <DialogHeader>
-            <h1 className="font-heading text-2xl mb-8">Create a new job</h1>
-            <CreateJobForm />
-          </DialogHeader>
-        </DialogContent>
-      </Dialog>
-    </div>
+    <Dialog
+    open={openModal}
+    onOpenChange={(open) => setOpenModal(open)}
+    >
+      <DialogTrigger 
+      onClick={() => setOpenModal(true)}
+      className="bg-black text-white hover:bg-off-black disabled:bg-off-black transition-all p-2 font-heading text-sm"
+      >
+        {children}
+      </DialogTrigger>
+      <DialogContent className="rounded-none max-w-5xl h-[50rem] overflow-scroll">
+        <CreateJobForm 
+        closeModal={setOpenModal}
+        />
+      </DialogContent>
+    </Dialog>
   )
 }
