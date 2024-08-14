@@ -18,7 +18,7 @@ export default function TabLink({ link, children, className, activate, label } :
           <Link 
           href={link} 
           >
-            <div className={cn(`flex items-center border border-dotted border-transparent p-3 outline-none transition-colors focus:text-slate-900 ${activate ? "bg-slate-100 border border-dotted border-our-gray" : "hover:bg-slate-100"}`, className)}>
+            <div className={cn(`flex items-center border border border-transparent p-3 outline-none transition-colors focus:text-slate-900 ${activate ? "bg-slate-100 border border border-our-gray" : "hover:bg-slate-100"}`, className)}>
               {children}
             </div>
           </Link>

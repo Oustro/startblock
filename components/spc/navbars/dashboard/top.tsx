@@ -23,14 +23,19 @@ export default async function TopDashboardNav() {
   const team = await getTeamForUser();
 
   return (
-    <nav className="w-full h-20 z-20 fixed top-0 bg-white flex justify-between items-center px-6">
-      <div className="flex items-center gap-6">
+    <nav className="w-full h-20 z-20 fixed top-0 bg-white flex justify-between shadow items-center px-6">
+      <div className="fixed top-0 left-24 w-full h-20 -z-10 border-b border-our-gray" />
+      <div className="flex items-center gap-8">
         <Logo 
         link="/dashboard"
         />
-        <Slash />
+        <Slash 
+        strokeWidth={1}
+        />
         <h1 className="font-heading text-lg">{team?.name}</h1>
-        <Slash />
+        <Slash 
+        strokeWidth={1}
+        />
         {team?.activated ? (
           <p className="text-sm flex items-center gap-2">
             <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
@@ -71,7 +76,7 @@ export default async function TopDashboardNav() {
             >
               <DropdownMenuItem>My Account</DropdownMenuItem>
             </Link>
-            <DropdownMenuItem>Help Center</DropdownMenuItem>
+            <DropdownMenuItem>Developers</DropdownMenuItem>
             <DropdownMenuItem>Changelog</DropdownMenuItem>
             <DropdownMenuItem>
               <SignoutForm />

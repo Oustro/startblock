@@ -1,3 +1,5 @@
+import EllipsisDropdown from "@/components/ui/ellipse-dropdown";
+
 import {
   Table,
   TableBody,
@@ -7,17 +9,12 @@ import {
   TableRow,
 } from "@/components/ui/table"
 
-import { Ellipsis } from 'lucide-react';
-
 export default function JobTable() {
 
   return (
     <Table className="mt-8 px-12">
       <TableHeader>
         <TableRow className="font-heading hover:bg-transparent border-our-gray">
-          <TableHead className="hidden w-[100px] sm:table-cell w-[80px]">
-            <span className="sr-only">Edit Button</span>
-          </TableHead>
           <TableHead className="w-[200px] text-our-gray">Job Title</TableHead>
           <TableHead className="text-our-gray w-[150px]">Status</TableHead>
           <TableHead className="text-our-gray">Applicants</TableHead>
@@ -25,32 +22,24 @@ export default function JobTable() {
       </TableHeader>
       <TableBody>
         <TableRow className="hover:bg-transparent border-our-gray">
-          <TableCell className="font-medium px-0"><Ellipsis /></TableCell>
           <TableCell className="font-medium">Product Engineer</TableCell>
           <TableCell>Active</TableCell>
           <TableCell>20</TableCell>
-          <TableCell className="text-right px-0">View Applicants &rarr;</TableCell>
+          <TableCell className="flex justify-end">
+            <EllipsisDropdown>
+              hi
+            </EllipsisDropdown>
+          </TableCell>
         </TableRow>
         <TableRow className="hover:bg-transparent border-our-gray">
-          <TableCell className="font-medium px-0"><Ellipsis /></TableCell>
-          <TableCell className="font-medium">Sr. Software Engineer</TableCell>
+          <TableCell className="font-medium">Product Engineer</TableCell>
           <TableCell>Active</TableCell>
-          <TableCell>12</TableCell>
-          <TableCell className="text-right px-0">View Applicants &rarr;</TableCell>
-        </TableRow>
-        <TableRow className="hover:bg-transparent border-our-gray">
-          <TableCell className="font-medium px-0"><Ellipsis /></TableCell>
-          <TableCell className="font-medium">CFO</TableCell>
-          <TableCell>Active</TableCell>
-          <TableCell>3</TableCell>
-          <TableCell className="text-right px-0">View Applicants &rarr;</TableCell>
-        </TableRow>
-        <TableRow className="hover:bg-transparent border-our-gray">
-          <TableCell className="font-medium px-0"><Ellipsis /></TableCell>
-          <TableCell className="font-medium">Social Media Manager</TableCell>
-          <TableCell>Active</TableCell>
-          <TableCell>18</TableCell>
-          <TableCell className="text-right px-0">View Applicants &rarr;</TableCell>
+          <TableCell>20</TableCell>
+          <TableCell className="flex justify-end">
+            <EllipsisDropdown>
+              hi
+            </EllipsisDropdown>
+          </TableCell>
         </TableRow>
       </TableBody>
     </Table>
