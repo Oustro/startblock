@@ -36,42 +36,40 @@ export default async function ActivateLink({ isOwner, imageSrc, teamId } : { isO
   return (
     <div>
       {isOwner ? (
-        <div className="mt-16 flex items-center justify-center">
-          <div className="w-[600px]">
-            <h1 className="font-heading text-xl">Activate Your Team</h1>
-            <p className="mt-4 text-our-gray">As a owner of this team, you need to activate it in order to start hirirng!</p>
-            <Image
-            src={imageSrc}
-            width={600}
-            height={200}
-            alt="Dashboard example"
-            className="border border-our-gray mt-4 w-full "
-            />
-            <Link 
-            href={stripeSession.url as string}
+        <div className="mt-16 text-center">
+          <p className="text-2xl font-heading">Please activate your team.</p>
+          <Image
+          src="/dashboard/activate.png"
+          alt="Activate your team"
+          priority
+          width={300}
+          draggable={false}
+          height={300}
+          className="mx-auto mt-8 mb-8"
+          />
+          <Link 
+          href={stripeSession.url as string}
+          >
+            <ActionButton
+            className="w-36"
             >
-              <ActionButton
-              className="mt-8"
-              >
-                Activate Team
-              </ActionButton>
-            </Link>
-          </div> 
-        </div> 
+              Activate Your Team
+            </ActionButton>
+          </Link>
+        </div>
       ) : (
-        <div className="mt-16 flex items-center justify-center">
-          <div className="w-[600px]">
-            <h1 className="font-heading text-xl">Activate Your Team</h1>
-            <p className="mt-4 text-our-gray">As a member of this team, please let the owner know they must activate this team in order to use it.</p>
-            <Image
-            src={imageSrc}
-            width={600}
-            height={200}
-            alt="Dashboard example"
-            className="border border-our-gray mt-4 w-full "
-            />
-          </div> 
-        </div> 
+        <div className="mt-16 text-center">
+          <p className="text-2xl font-heading">Please activate your team.</p>
+          <Image
+          src="/dashboard/activate.png"
+          alt="Activate your team"
+          priority
+          width={300}
+          draggable={false}
+          height={300}
+          className="mx-auto mt-8 mb-8"
+          />
+        </div>
       )}
     </div>
   )
