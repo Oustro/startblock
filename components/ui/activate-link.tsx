@@ -2,9 +2,19 @@ import { auth } from "@/utils/auth";
 
 import ActionButton from "./action-button";
 
-import Image from "next/image";
+import { Ellipsis } from 'lucide-react';
+
 import Link from "next/link";
 import Stripe from "stripe";
+
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
 
 export default async function ActivateLink({ isOwner, imageSrc, teamId } : { isOwner: boolean, imageSrc: string, teamId: string }) {
   const session = await auth();
@@ -35,24 +45,42 @@ export default async function ActivateLink({ isOwner, imageSrc, teamId } : { isO
 
   return (
     <div>
-      {isOwner ? (
-        <div className="mt-16 text-center">
-          <p className="text-2xl font-heading mb-16">Please activate your team.</p>
+      <div className="border border-our-gray shadow w-96 flex flex-col justify-center mx-auto mt-48 bg-white border p-8 h-56 text-center">
+        <p className="text-2xl font-heading">Activate your team.</p>
+        <p className="text-our-gray mt-4">Activate your team to begin using StartBlock's deligthfully simple ATS.</p>
+        {isOwner && (
           <Link 
           href={stripeSession.url as string}
           >
             <ActionButton
-            className="w-36"
+            className="w-36 mt-8"
             >
               Activate Your Team
             </ActionButton>
           </Link>
-        </div>
-      ) : (
-        <div className="mt-16 text-center">
-          <p className="text-2xl font-heading">Please activate your team.</p>
-        </div>
-      )}
+        )}
+      </div>
+      <Table className="-z-20 mt-8 px-12 blur fixed -mt-96">
+        <TableHeader>
+          <TableRow className="font-heading hover:bg-transparent border-our-gray">
+            <TableHead className="w-[200px] text-our-gray">Job Title</TableHead>
+            <TableHead className="text-our-gray w-[150px]">Status</TableHead>
+            <TableHead className="text-our-gray">Applicants</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {Array(10).fill(0).map((_, i) => (
+            <TableRow className="hover:bg-transparent border-our-gray" key={i}>
+              <TableCell className="font-medium">Product {i % 3 === 0 ? "Active" : "Arc"}</TableCell>
+              <TableCell>{i % 3 === 0 ? "Active" : "Archived"}</TableCell>
+              <TableCell>{i % 3 === 0 ? i / 3 : i * 23}</TableCell>
+              <TableCell className="flex justify-end">
+                <Ellipsis />
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
     </div>
   )
 }
