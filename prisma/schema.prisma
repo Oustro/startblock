@@ -74,11 +74,15 @@ model Team {
 }
 
 model Job {
-  id        String   @id @default(cuid())
-  name      String
-  questions String[]
-  status    String
-  applicant Int
-  teamId    String
-  team      Team     @relation(fields: [teamId], references: [id])
+  id           String   @id @default(cuid())
+  title        String
+  location     String
+  salary       String
+  description  String
+  requirements String
+  questions    Json
+  status       String  @default("Active")
+  applicant    Int     @default(0)
+  teamId       String
+  team         Team     @relation(fields: [teamId], references: [id])
 }

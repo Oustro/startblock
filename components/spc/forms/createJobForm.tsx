@@ -21,6 +21,7 @@ import EllipsisDropdown from "@/components/ui/ellipse-dropdown";
 import { DropdownMenuItem } from "@/components/ui/dropdown-menu"
 
 import { questions } from "@/types/startblock";
+import { createJob } from "@/lib/job";
 
 export default function CreateJobForm({ closeModal } : { closeModal: Function }) {
   const [step, setStep] = useState(1)
@@ -88,8 +89,21 @@ export default function CreateJobForm({ closeModal } : { closeModal: Function })
 
   async function handleSubmit() {
     setLoading(true)
-    // await createJob()
-    setLoading(false)
+
+    try {
+      await createJob(
+      jobTitle,
+      jobLocation,
+      jobPay,
+      jobDescription,
+      jobRequirements,
+      additionalQuestions,
+      customQuestions,
+    )
+    } catch (error) {
+      return console.error(error)
+    }
+
     return closeModal()
   }
 
@@ -196,16 +210,16 @@ export default function CreateJobForm({ closeModal } : { closeModal: Function })
             ))}
             {potentialQuestions.map((question, index) => (
               <CheckBox
-                key={question.question}
-                checked={additionalQuestions.some((q) => q.question === question.question)}
-                disabled={false}
-                onCheckChanged={(checked) => {
-                  if (checked) {
-                    setAdditionalQuestions([...additionalQuestions.slice(0, index), question, ...additionalQuestions.slice(index)]);
-                  } else {
-                    setAdditionalQuestions(additionalQuestions.filter((q) => q.question !== question.question));
-                  }
-                }}
+              key={question.question}
+              checked={additionalQuestions.some((q) => q.question === question.question)}
+              disabled={loading}
+              onCheckChanged={(checked) => {
+                if (checked) {
+                  setAdditionalQuestions([...additionalQuestions.slice(0, index), question, ...additionalQuestions.slice(index)]);
+                } else {
+                  setAdditionalQuestions(additionalQuestions.filter((q) => q.question !== question.question));
+                }
+              }}
               className="mt-6"
               >
                 {question.question}
@@ -229,6 +243,7 @@ export default function CreateJobForm({ closeModal } : { closeModal: Function })
                 />
                 <ActionButton
                 type="submit"
+                disabled={loading}
                 >
                   Add
                 </ActionButton>
@@ -255,7 +270,7 @@ export default function CreateJobForm({ closeModal } : { closeModal: Function })
                     {customQuestionTypes.map((type) => (
                       <DropdownMenuItem
                       key={type.type}
-                      disabled={question.type === type.type}
+                      disabled={question.type === type.type || loading}
                       onClick={() => setCustomQuestions(customQuestions.map((q, i) => i === index ? { ...q, type: type.type } : q))}
                       >
                         {type.name}
@@ -263,6 +278,7 @@ export default function CreateJobForm({ closeModal } : { closeModal: Function })
                     ))}
                     <DropdownMenuItem
                     className="gap-2"
+                    disabled={loading}
                     onClick={() => setCustomQuestions(customQuestions.filter((_, i) => i !== index))}
                     >
                       <CircleMinus 
