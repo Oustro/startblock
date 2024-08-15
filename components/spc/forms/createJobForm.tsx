@@ -166,7 +166,7 @@ export default function CreateJobForm({ closeModal } : { closeModal: Function })
             >
               {questions.map((question, index) => (
                 <Reorder.Item 
-                key={question + index} 
+                key={question} 
                 value={question} 
                 className="flex justify-between"
                 >
