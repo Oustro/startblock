@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react"
+import { useRouter } from "next/navigation";
 
 import Input from "@/components/ui/input-field";
 import TextArea from "@/components/ui/textarea-field";
@@ -36,6 +37,8 @@ export default function CreateJobForm({ closeModal } : { closeModal: Function })
   const [additionalQuestions, setAdditionalQuestions] = useState<questions[]>([])
   const [customQuestions, setCustomQuestions] = useState<questions[]>([])
   const [question, setQuestion] = useState("")
+
+  const router = useRouter()
 
   const requiredQuestions = ["Full name", "Email", "Voluntary self-identification", "Voluntary self-identification of disability"]
   const potentialQuestions= [
@@ -103,8 +106,8 @@ export default function CreateJobForm({ closeModal } : { closeModal: Function })
     } catch (error) {
       return console.error(error)
     }
-
-    return closeModal()
+    closeModal()
+    return router.refresh()
   }
 
   return (

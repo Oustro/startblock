@@ -10,10 +10,15 @@ export interface team {
 
 export interface job {
   id: string;
-  name: string;
+  title: string;
+  location: string;
+  salary: string;
+  description: string;
+  requirements: string;
   questions: string[];
   status: string;
   applicant: number;
+  teamId: string;
 }
 
 export interface questions {

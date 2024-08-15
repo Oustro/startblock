@@ -11,6 +11,8 @@ import {
 
 import { getTeamForUser } from "@/lib/team";
 
+import Link from "next/link";
+
 export default async function JobTable() {
 
   const team = await getTeamForUser();
@@ -29,18 +31,25 @@ export default async function JobTable() {
           <TableRow className="hover:bg-white border-our-gray hover:bg-transparent">
             <TableCell colSpan={3} className="text-center">No jobs found.</TableCell>
           </TableRow>
-        ) : (
-          <TableRow className="hover:bg-white border-our-gray">
-          <TableCell className="font-medium">Product Engineer</TableCell>
-          <TableCell>Active</TableCell>
-          <TableCell>20</TableCell>
-          <TableCell className="flex justify-end">
-            <EllipsisDropdown>
-              hi
-            </EllipsisDropdown>
-          </TableCell>
-        </TableRow>
-        )}
+        ) : ( team?.jobs.map((job) => (
+          <Link
+          key={job.id}
+          href={`/dashboard/${job.id}`}
+          legacyBehavior
+          className="hover:cursor-pointer"
+          >
+            <TableRow className="hover:bg-white border-our-gray hover:cursor-pointer">
+              <TableCell className="font-medium">{job.title}</TableCell>
+              <TableCell>{job.status}</TableCell>
+              <TableCell>{job.applicant}</TableCell>
+              <TableCell className="flex justify-end">
+                <EllipsisDropdown>
+                  {job.id}
+                </EllipsisDropdown>
+              </TableCell>
+            </TableRow>
+          </Link>
+        )))}
       </TableBody>
     </Table>
   )
