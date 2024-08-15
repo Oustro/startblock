@@ -43,7 +43,7 @@ export default function CreateJobForm({ closeModal } : { closeModal: Function })
 
   return (
     <div className="flex justify-between gap-0">
-      <div className="w-full h-[46rem] overflow-scroll">
+      <div className="w-full h-[46rem] overflow-scroll no-scrollbar">
         <h1 className="text-3xl font-heading sticky h-10 bg-white top-0">Create a new job</h1>
         {step === 1 && (
           <form
@@ -107,9 +107,9 @@ export default function CreateJobForm({ closeModal } : { closeModal: Function })
             onChange={(e) => setJobRequirements(e.target.value)}
             disabled={loading}
             required 
-            className="mt-3"
+            className="mt-3 mb-10"
             />
-            <div className="flex justify-between mt-8 fixed bottom-8 w-[46%]">
+            <div className="flex justify-between mt-8 bg-white fixed bottom-8 w-[46%]">
               <ActionWord 
               onClick={() => closeModal(false)}
               type="button"
@@ -214,9 +214,9 @@ export default function CreateJobForm({ closeModal } : { closeModal: Function })
             <h1 className={`text-3xl mt-6 font-heading ${!jobTitle && "text-our-gray" }`}>{jobTitle || "Job title"}</h1>
             <h3 className={`text-lg mt-4 font-heading ${!jobLocation && "text-our-gray" }`}>{jobLocation || "Location"}</h3>
             <h3 className={`text-lg mt-4 font-heading ${!jobPay && "text-our-gray" }`}>{jobPay ? "$"+jobPay : "Salary"}</h3>
-            <h3 className="mt-8 font-heading">Description</h3>
+            <h3 className="mt-8 font-heading text-lg">Description</h3>
             <p className={`mt-2 whitespace-pre-wrap ${!jobDescription && "text-our-gray" }`}>{jobDescription || "Job description"}</p>
-            <h3 className="mt-8 font-heading">Requirements</h3>
+            <h3 className="mt-8 font-heading text-lg">Requirements</h3>
             <p className={`mt-2 whitespace-pre-wrap ${!jobRequirements && "text-our-gray" }`}>{jobRequirements || "Job requirements"}</p>
           </>
         )}

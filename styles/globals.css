@@ -12,3 +12,14 @@ body {
   color: rgb(var(--primary-text-color));
   background: rgb(var(--primary-background-color));
 }
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
