@@ -7,6 +7,13 @@ import TextArea from "@/components/ui/textarea-field";
 import ActionWord from "@/components/ui/action-word";
 import ActionButton from "@/components/ui/action-button";
 
+import { Reorder } from "framer-motion"
+
+import { GripVertical } from 'lucide-react';
+import EllipsisDropdown from "@/components/ui/ellipse-dropdown";
+
+import { DropdownMenuItem } from "@/components/ui/dropdown-menu"
+
 export default function CreateJobForm({ closeModal } : { closeModal: Function }) {
   const [step, setStep] = useState(1)
   const [loading, setLoading] = useState(false)
@@ -17,12 +24,26 @@ export default function CreateJobForm({ closeModal } : { closeModal: Function })
   const [jobLocation, setJobLocation] = useState("")
   const [jobPay, setJobPay] = useState("")
 
-  const [questions, setQuestions] = useState([])
+  const [questions, setQuestions] = useState<string[]>([])
   const [question, setQuestion] = useState("")
+
+  function handleAddQuestion(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+
+    setQuestions([...questions, question])
+    return setQuestion("")
+  }
+
+  async function handleSubmit() {
+    setLoading(true)
+    // await createJob()
+    setLoading(false)
+    return closeModal()
+  }
 
   return (
     <div className="flex justify-between gap-0">
-      <div className="w-full sticky top-0 h-fit">
+      <div className="w-full">
         <h1 className="text-3xl font-heading">Create a new job</h1>
         {step === 1 && (
           <form
@@ -88,16 +109,18 @@ export default function CreateJobForm({ closeModal } : { closeModal: Function })
             required 
             className="mt-3"
             />
-            <div className="flex justify-between mt-8 w-[46%] bottom-8 fixed">
+            <div className="flex justify-between mt-8">
               <ActionWord 
               onClick={() => closeModal(false)}
               type="button"
+              disabled={loading}
               >
                 Cancel
               </ActionWord>
               <ActionButton
               className="w-20"
               type="submit"
+              disabled={loading}
               >
                 Continue
               </ActionButton>
@@ -106,14 +129,15 @@ export default function CreateJobForm({ closeModal } : { closeModal: Function })
         )}
 
         {step === 2 && (
-          <div
-          className="h-full"
-          >
+          <div className="h-[46rem]">
             <p className="mt-2 text-our-gray">Add additional questions.</p>
             <h3 className="mt-6 font-heading">Full name</h3>
             <h3 className="mt-6 font-heading">Email</h3>
             <h3 className="mt-6 font-heading">Resume</h3>
-            <form className="border-t mt-6 pt-6 border-our-gray">
+            <form 
+            className="border-t mt-6 pt-6 border-our-gray"
+            onSubmit={handleAddQuestion}
+            >
               <h3 className="font-heading">Additional Questions</h3>
               <div className="flex justify-between gap-4 mt-3">
                 <Input 
@@ -133,10 +157,39 @@ export default function CreateJobForm({ closeModal } : { closeModal: Function })
                 </ActionButton>
               </div>
             </form>
-            <div className="flex justify-between mt-8 w-[46%] bottom-8 fixed">
+
+            <Reorder.Group 
+            axis="y" 
+            values={questions} 
+            onReorder={setQuestions} 
+            className="flex flex-col gap-4 mt-4"
+            >
+              {questions.map((question, index) => (
+                <Reorder.Item 
+                key={question + index} 
+                value={question} 
+                className="flex justify-between"
+                >
+                  <div className="flex flex-grow gap-2 items-center pr-4 cursor-grab">
+                    <GripVertical size={12} />
+                    <p className="font-normal">{question}</p>
+                  </div>
+                  <EllipsisDropdown>
+                    <DropdownMenuItem
+                    onClick={() => setQuestions(questions.filter((_, i) => i !== index))}
+                    >
+                      Remove
+                    </DropdownMenuItem>
+                  </EllipsisDropdown>
+                </Reorder.Item>
+              ))}
+            </Reorder.Group>
+            
+            <div className="flex justify-between mt-8 bottom-8 fixed w-[46%]">
               <div className="flex gap-2">
                 <ActionWord
                 type="button"
+                disabled={loading}
                 onClick={() => setStep(1)}
                 >
                   Back
@@ -145,6 +198,8 @@ export default function CreateJobForm({ closeModal } : { closeModal: Function })
               <ActionButton
               className="w-16"
               type="submit"
+              disabled={loading}
+              onClick={handleSubmit}
               >
                 Post
               </ActionButton>
@@ -153,7 +208,7 @@ export default function CreateJobForm({ closeModal } : { closeModal: Function })
         )}
       </div>
       <div className="h-full my-auto border-l border-our-gray mx-4" />
-      <div className="w-full">
+      <div className="w-full overflow-scroll h-[46rem]">
         {step === 1 && (
           <>
             <p className="text-our-gray">Preview job posting.</p>
@@ -194,6 +249,18 @@ export default function CreateJobForm({ closeModal } : { closeModal: Function })
             disabled={true}
             className="mt-3"
             />
+            {questions.map((question, index) => (
+              <div key={question} className="mt-6">
+                <h3 className="font-heading">{question}</h3>
+                <Input 
+                type="text" 
+                placeholder="Enter your answer..." 
+                name={`question-${index}`} 
+                disabled={true}
+                className="mt-3"
+                />
+              </div>
+            ))}
           </>
         )}
       </div>
