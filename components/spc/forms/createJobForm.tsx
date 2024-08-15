@@ -399,12 +399,12 @@ export default function CreateJobForm({ closeModal } : { closeModal: Function })
                 )}
               </div>
             ))}
+            <h1 className="mt-6 font-heading">Voluntary self-indentification</h1>
+            <p>...</p>
+            <h1 className="mt-6 font-heading">Voluntary self-indentification of disability</h1>
+            <p>...</p>
           </>
         )}
-        <h1 className="mt-6 font-heading">Voluntary self-indentification</h1>
-        <p>...</p>
-        <h1 className="mt-6 font-heading">Voluntary self-indentification of disability</h1>
-        <p>...</p>
       </div>
     </div>
   )
