@@ -6,13 +6,21 @@ import Input from "@/components/ui/input-field";
 import TextArea from "@/components/ui/textarea-field";
 import ActionWord from "@/components/ui/action-word";
 import ActionButton from "@/components/ui/action-button";
+import CheckBox from "@/components/ui/input-checkbox";
+
+import FileInput from "../answers/file";
+import YesNoDropdown from "../answers/yn";
+import SchoolDropdown from "../answers/sd";
+import HearDropdown from "../answers/hdyh";
 
 import { Reorder } from "framer-motion"
 
-import { GripVertical } from 'lucide-react';
+import { GripVertical, CircleMinus } from 'lucide-react';
 import EllipsisDropdown from "@/components/ui/ellipse-dropdown";
 
 import { DropdownMenuItem } from "@/components/ui/dropdown-menu"
+
+import { questions } from "@/types/startblock";
 
 export default function CreateJobForm({ closeModal } : { closeModal: Function }) {
   const [step, setStep] = useState(1)
@@ -24,13 +32,57 @@ export default function CreateJobForm({ closeModal } : { closeModal: Function })
   const [jobLocation, setJobLocation] = useState("")
   const [jobPay, setJobPay] = useState("")
 
-  const [questions, setQuestions] = useState<string[]>([])
+  const [additionalQuestions, setAdditionalQuestions] = useState<questions[]>([])
+  const [customQuestions, setCustomQuestions] = useState<questions[]>([])
   const [question, setQuestion] = useState("")
+
+  const requiredQuestions = ["Full name", "Email", "Voluntary self-identification", "Voluntary self-identification of disability"]
+  const potentialQuestions= [
+    { 
+      question: "Resume", 
+      type: "F" 
+    }, 
+    {
+      question: "School",
+      type: "SD"
+    },
+    {
+      question: "Linkedin",
+      type: "SA"
+    },
+    {
+      question: "Will you now or in the future require sponsorship for employment visa status?",
+      type: "YN"
+    },
+    {
+      question: "How did you hear about this job?",
+      type: "HDYH"
+    },
+  ]
+  const customQuestionTypes = [
+    {
+      type: "SA",
+      name: "Short answer"
+    },
+    {
+      type: "LA",
+      name: "Long answer"
+    },
+    {
+      type: "YN",
+      name: "Yes or no"
+    },
+  ]
+
 
   function handleAddQuestion(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
 
-    setQuestions([...questions, question])
+    setCustomQuestions([...customQuestions, {
+      question: question,
+      type: "SA"
+    }])
+
     return setQuestion("")
   }
 
@@ -131,9 +183,34 @@ export default function CreateJobForm({ closeModal } : { closeModal: Function })
         {step === 2 && (
           <div>
             <p className="mt-2 text-our-gray">Add additional questions.</p>
-            <h3 className="mt-6 font-heading">Full name</h3>
-            <h3 className="mt-6 font-heading">Email</h3>
-            <h3 className="mt-6 font-heading">Resume</h3>
+            {requiredQuestions.map((question) => (
+              <CheckBox
+              key={question}
+              disabled={true}
+              onCheckChanged={() => {}}
+              checked={true}
+              className="mt-6"
+              >
+                {question}
+              </CheckBox>
+            ))}
+            {potentialQuestions.map((question, index) => (
+              <CheckBox
+                key={question.question}
+                checked={additionalQuestions.some((q) => q.question === question.question)}
+                disabled={false}
+                onCheckChanged={(checked) => {
+                  if (checked) {
+                    setAdditionalQuestions([...additionalQuestions.slice(0, index), question, ...additionalQuestions.slice(index)]);
+                  } else {
+                    setAdditionalQuestions(additionalQuestions.filter((q) => q.question !== question.question));
+                  }
+                }}
+              className="mt-6"
+              >
+                {question.question}
+              </CheckBox>
+            ))}
             <form 
             className="border-t mt-6 pt-6 border-our-gray"
             onSubmit={handleAddQuestion}
@@ -160,24 +237,37 @@ export default function CreateJobForm({ closeModal } : { closeModal: Function })
 
             <Reorder.Group 
             axis="y" 
-            values={questions} 
-            onReorder={setQuestions} 
+            values={customQuestions} 
+            onReorder={setCustomQuestions} 
             className="flex flex-col gap-4 mt-4 mb-10"
             >
-              {questions.map((question, index) => (
+              {customQuestions.map((question, index) => (
                 <Reorder.Item 
-                key={question} 
+                key={question.question} 
                 value={question} 
                 className="flex justify-between"
                 >
                   <div className="flex flex-grow gap-2 items-center pr-4 cursor-grab">
                     <GripVertical size={12} />
-                    <p className="font-normal">{question}</p>
+                    <p className="font-normal">{question.question}</p>
                   </div>
                   <EllipsisDropdown>
+                    {customQuestionTypes.map((type) => (
+                      <DropdownMenuItem
+                      key={type.type}
+                      disabled={question.type === type.type}
+                      onClick={() => setCustomQuestions(customQuestions.map((q, i) => i === index ? { ...q, type: type.type } : q))}
+                      >
+                        {type.name}
+                      </DropdownMenuItem>
+                    ))}
                     <DropdownMenuItem
-                    onClick={() => setQuestions(questions.filter((_, i) => i !== index))}
+                    className="gap-2"
+                    onClick={() => setCustomQuestions(customQuestions.filter((_, i) => i !== index))}
                     >
+                      <CircleMinus 
+                      size={16} 
+                      />
                       Remove
                     </DropdownMenuItem>
                   </EllipsisDropdown>
@@ -224,44 +314,97 @@ export default function CreateJobForm({ closeModal } : { closeModal: Function })
         {step === 2 && (
           <>
             <p className="text-our-gray">Preview job application.</p>
-            <h3 className="font-heading mt-6">Full name</h3>
+            <h1 className="mt-6 font-heading">Full name</h1>
             <Input 
             type="text" 
-            placeholder="Enter your full name..." 
-            name="app name" 
+            placeholder="Enter your answer..."
+            name="question-0-r" 
             disabled={true}
             className="mt-3"
             />
-            <h3 className="font-heading mt-6">Email</h3>
+            <h1 className="mt-6 font-heading">Email</h1>
             <Input 
             type="text" 
-            placeholder="Enter your email..." 
-            name="app email" 
+            placeholder="Enter your answer..." 
+            name="question-1-r"
             disabled={true}
             className="mt-3"
             />
-            <h3 className="font-heading mt-6">Resume</h3>
-            <Input 
-            type="file" 
-            placeholder="Enter your email..." 
-            name="app email" 
-            disabled={true}
-            className="mt-3"
-            />
-            {questions.map((question, index) => (
-              <div key={question} className="mt-6">
-                <h3 className="font-heading">{question}</h3>
-                <Input 
-                type="text" 
-                placeholder="Enter your answer..." 
-                name={`question-${index}`} 
-                disabled={true}
-                className="mt-3"
-                />
+
+            {additionalQuestions.map((question, index) => (
+              <div key={question.question} className="mt-6">
+                <h3 className="font-heading">{question.question}</h3>
+                {question.type === "SA" ? (
+                  <Input 
+                  type="text" 
+                  placeholder="Enter your answer..." 
+                  name={`question-${index}`} 
+                  disabled={true}
+                  className="mt-3"
+                  />
+                ) : question.type === "F" ? (
+                  <FileInput
+                  disabled={true}
+                  className="mt-3"
+                  />
+                ) : question.type === "YN" ? (
+                  <YesNoDropdown 
+                  disabled={true}
+                  className="mt-3"
+                  />
+                ) : question.type === "SD" ? (
+                  <SchoolDropdown
+                  disabled={true}
+                  className="mt-3"
+                  />
+                ) : question.type === "HDYH" ? (
+                  <HearDropdown
+                  disabled={false}
+                  className="mt-3"
+                  />
+                ) : (
+                  <TextArea 
+                  placeholder="Enter your answer..." 
+                  name={`question-${index}`} 
+                  disabled={true}
+                  className="mt-3"
+                  />
+                )}
+              </div>
+            ))}
+
+            {customQuestions.map((question, index) => (
+              <div key={question.question} className="mt-6">
+                <h3 className="font-heading">{question.question}</h3>
+                {question.type === "SA" ? (
+                  <Input 
+                  type="text" 
+                  placeholder="Enter your answer..." 
+                  name={`question-${index}`} 
+                  disabled={true}
+                  className="mt-3"
+                  />
+                ) : question.type === "YN" ? (
+                  <YesNoDropdown 
+                  disabled={true}
+                  className="mt-3"
+                  />
+                ) : (
+                  <TextArea 
+                  placeholder="Enter your answer..." 
+                  name={`question-${index}`} 
+                  disabled={true}
+                  className="mt-3"
+                  />
+                )}
               </div>
             ))}
           </>
         )}
+        <h1 className="mt-6 font-heading">Voluntary self-indentification</h1>
+        <p>...</p>
+        <h1 className="mt-6 font-heading">Voluntary self-indentification of disability</h1>
+        <p>...</p>
       </div>
     </div>
   )

@@ -9,7 +9,7 @@ export default function TextArea({ placeholder, name, required, className, onCha
     required={required || false}
     onChange={onChange as any}
     disabled={disabled}
-    className={cn("px-3 py-2 border bg-transparent text-sm font-normal h-32 w-full border-our-gray outline-none", className)}
+    className={cn("px-3 py-2 border bg-transparent text-sm disabled:cursor-not-allowed font-normal h-32 w-full border-our-gray outline-none", className)}
     />
   )
 }

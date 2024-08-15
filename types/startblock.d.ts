@@ -15,3 +15,8 @@ export interface job {
   status: string;
   applicant: number;
 }
+
+export interface questions {
+  question: string;
+  type: string;
+}
