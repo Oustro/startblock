@@ -43,8 +43,8 @@ export default function CreateJobForm({ closeModal } : { closeModal: Function })
 
   return (
     <div className="flex justify-between gap-0">
-      <div className="w-full">
-        <h1 className="text-3xl font-heading">Create a new job</h1>
+      <div className="w-full h-[46rem] overflow-scroll">
+        <h1 className="text-3xl font-heading sticky h-10 bg-white top-0">Create a new job</h1>
         {step === 1 && (
           <form
           onSubmit={() => setStep(2)}
@@ -109,7 +109,7 @@ export default function CreateJobForm({ closeModal } : { closeModal: Function })
             required 
             className="mt-3"
             />
-            <div className="flex justify-between mt-8">
+            <div className="flex justify-between mt-8 fixed bottom-8 w-[46%]">
               <ActionWord 
               onClick={() => closeModal(false)}
               type="button"
@@ -129,7 +129,7 @@ export default function CreateJobForm({ closeModal } : { closeModal: Function })
         )}
 
         {step === 2 && (
-          <div className="h-[46rem]">
+          <div>
             <p className="mt-2 text-our-gray">Add additional questions.</p>
             <h3 className="mt-6 font-heading">Full name</h3>
             <h3 className="mt-6 font-heading">Email</h3>
@@ -162,7 +162,7 @@ export default function CreateJobForm({ closeModal } : { closeModal: Function })
             axis="y" 
             values={questions} 
             onReorder={setQuestions} 
-            className="flex flex-col gap-4 mt-4"
+            className="flex flex-col gap-4 mt-4 mb-10"
             >
               {questions.map((question, index) => (
                 <Reorder.Item 
@@ -184,30 +184,29 @@ export default function CreateJobForm({ closeModal } : { closeModal: Function })
                 </Reorder.Item>
               ))}
             </Reorder.Group>
-            
-            <div className="flex justify-between mt-8 bottom-8 fixed w-[46%]">
-              <div className="flex gap-2">
-                <ActionWord
-                type="button"
-                disabled={loading}
-                onClick={() => setStep(1)}
-                >
-                  Back
-                </ActionWord>
-              </div>
-              <ActionButton
-              className="w-16"
-              type="submit"
+
+            <div className="flex justify-between bg-white fixed bottom-8 w-[46%]">
+              <ActionWord 
+              onClick={() => setStep(1)}
+              type="button"
               disabled={loading}
-              onClick={handleSubmit}
               >
-                Post
+                Back
+              </ActionWord>
+              <ActionButton
+              className="w-20"
+              onClick={handleSubmit}
+              disabled={loading}
+              >
+                Continue
               </ActionButton>
             </div>
-          </div>
+          </div>  
         )}
       </div>
+
       <div className="h-full my-auto border-l border-our-gray mx-4" />
+      
       <div className="w-full overflow-scroll h-[46rem]">
         {step === 1 && (
           <>
