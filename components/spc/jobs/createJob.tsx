@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/dialog"
 
 import CreateJobForm from "../forms/createJobForm"
+import { DialogTitle } from "@radix-ui/react-dialog";
 
 export default function CreateJob({ children } : { children?: React.ReactNode }) {
   const [openModal, setOpenModal] = useState(false)
@@ -25,6 +26,7 @@ export default function CreateJob({ children } : { children?: React.ReactNode })
         {children}
       </DialogTrigger>
       <DialogContent className="rounded-none max-w-5xl h-[50rem] overflow-scroll">
+        <DialogTitle className="hidden">Create a new job</DialogTitle>
         <CreateJobForm 
         closeModal={setOpenModal}
         />

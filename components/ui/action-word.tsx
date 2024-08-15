@@ -6,7 +6,7 @@ export default function ActionWord({ onClick, type, children, className, disable
     type={type} 
     onClick={onClick} 
     disabled={disabled}
-    className={cn("transition-all font-heading text-sm border border-x-transparent border-y-transparent hover:border-b-black disabled:border-b-black", className)}
+    className={cn("transition-all font-heading text-sm disabled:border-b-black hover:text-our-gray", className)}
     >
       {disabled ? "Loading..." : children}
     </button>
