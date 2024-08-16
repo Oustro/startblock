@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 import { onboardUserStepOne, onboardUserStepTwo } from "@/lib/onboarding";
-import { createTeam } from "@/lib/team";
+import { createTeam, joinTeam } from "@/lib/team";
 
 import Input from "@/components/ui/input-field";
 import ActionButton from "@/components/ui/action-button";
@@ -17,6 +17,7 @@ export default function OnboardForm() {
 
   const [name, setName] = useState("");
   const [teamName, setTeamName] = useState("");
+  const [teamShareCode, setTeamShareCode] = useState("");
 
   const router = useRouter();
 
@@ -38,6 +39,20 @@ export default function OnboardForm() {
     
     await createTeam(teamName);
 
+    await handleUpdateUser(2);
+
+    return router.push("/dashboard")
+  }
+
+  async function handleSubmitJoinTeam(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault(); 
+    setLoading(true);
+    setError("");
+
+    await joinTeam(teamShareCode);
+
+    await handleUpdateUser(1);
+    
     await handleUpdateUser(2);
 
     return router.push("/dashboard")
@@ -131,13 +146,18 @@ export default function OnboardForm() {
         )}
 
         {step === 4 && (
-          <form>
+          <form
+          onSubmit={handleSubmitJoinTeam}
+          >
             <h1 className="text-3xl font-heading">Join an existing team</h1>
             <h3 className="mt-8 font-heading">Team Share Code</h3>
             <Input
             type="text"
-            placeholder="Enter your team name..."
-            name="teamName"
+            placeholder="Enter your team share code..."
+            name="teamCode"
+            value={teamShareCode}
+            onChange={(e) => setTeamShareCode(e.target.value)}
+            disabled={loading}
             required
             className="mt-3"
             />

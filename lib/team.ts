@@ -5,7 +5,7 @@ import { auth } from "@/utils/auth";
 
 import { customAlphabet } from "nanoid";
 
-import { team } from "@/types/startblock";
+import { memberList, team } from "@/types/startblock";
 
 export async function createTeam(teamName: string): Promise<undefined> {
   const session = await auth();
@@ -23,6 +23,29 @@ export async function createTeam(teamName: string): Promise<undefined> {
         20
       )(),
       owners: {
+        connect: {
+          id: session?.user.id,
+        },
+      },
+    },
+  });
+
+  return;
+}
+
+export async function joinTeam(teamShareCode: string): Promise<undefined> {
+  const session = await auth();
+
+  if (!session?.user) {
+    throw new Error("You must be logged in to access this resource.");
+  }
+
+  await prisma.team.update({
+    where: {
+      shareId: teamShareCode,
+    },
+    data: {
+      members: {
         connect: {
           id: session?.user.id,
         },
@@ -129,8 +152,6 @@ export async function updateTeamName(
     throw new Error("You must be logged in to access this resource.");
   }
 
-  console.log(teamId, name);
-
   await prisma.team.update({
     where: {
       id: teamId,
@@ -139,6 +160,100 @@ export async function updateTeamName(
       name: name,
     },
   });
+
+  return;
+}
+
+export async function getTeamMembers(teamId: string): Promise<memberList[]> {
+  const session = await auth();
+
+  if (!session?.user) {
+    throw new Error("You must be logged in to access this resource.");
+  }
+
+  const team = await prisma.team.findUnique({
+    where: {
+      id: teamId,
+    },
+    include: {
+      owners: true,
+      members: true,
+    },
+  });
+
+  let teamMembers = [];
+
+  for (const owner of team?.owners || []) {
+    teamMembers.push({
+      name: owner.name,
+      id: owner.id,
+      email: owner.email,
+      gradient: owner.gradient,
+      type: "Owner",
+    });
+  }
+
+  for (const owner of team?.members || []) {
+    teamMembers.push({
+      id: owner.id,
+      name: owner.name,
+      email: owner.email,
+      gradient: owner.gradient,
+      type: "Member",
+    });
+  }
+
+  return teamMembers;
+}
+
+export async function updateMemberType(
+  teamId: string,
+  memberId: string,
+  type: string
+): Promise<undefined> {
+  const session = await auth();
+
+  if (!session?.user) {
+    throw new Error("You must be logged in to access this resource.");
+  }
+
+  if (type === "Owner") {
+    await prisma.team.update({
+      where: {
+        id: teamId,
+      },
+      data: {
+        owners: {
+          connect: {
+            id: memberId,
+          },
+        },
+        members: {
+          disconnect: {
+            id: memberId,
+          },
+        },
+      },
+    });
+  } else {
+    await prisma.team.update({
+      where: {
+        id: teamId,
+      },
+      data: {
+        members: {
+          connect: {
+            id: memberId,
+          },
+        },
+        owners: {
+          disconnect: {
+            id: memberId,
+          },
+        },
+      },
+    });
+  }
 
   return;
 }

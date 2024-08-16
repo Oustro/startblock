@@ -26,3 +26,11 @@ export interface questions {
   question: string;
   type: string;
 }
+
+export interface memberList {
+  name: string | null;
+  id: string | null;
+  email: string | null;
+  type: string | null;
+  gradient: string | null;
+}
