@@ -14,7 +14,7 @@ export default async function Dashboard() {
         <h1 className="text-4xl font-special">Hiring Dashboard</h1>
         <ActivateLink 
         isOwner={team?.type === "owner" ? true : false} 
-        imageSrc="/dashboard/dashboard-ex.png"
+        page="dashboard"
         teamId={team?.id as string}
         />
       </main>

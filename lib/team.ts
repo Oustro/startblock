@@ -70,5 +70,31 @@ export async function getTeamForUser(): Promise<team | undefined> {
   return {
     ...(team.memberTeams[0] || team.ownedTeams[0]),
     type: type,
-  };
+  } as team;
+}
+
+export async function regeneratePublicId(teamId: string): Promise<string> {
+  const session = await auth();
+
+  if (!session?.user) {
+    throw new Error("You must be logged in to access this resource.");
+  }
+
+  const newPublicId = customAlphabet(
+    "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+    20
+  )();
+
+  console.log(newPublicId);
+
+  await prisma.team.update({
+    where: {
+      id: teamId,
+    },
+    data: {
+      publicId: newPublicId,
+    },
+  });
+
+  return newPublicId;
 }

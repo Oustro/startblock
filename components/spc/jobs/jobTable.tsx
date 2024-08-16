@@ -18,7 +18,7 @@ export default async function JobTable() {
   const team = await getTeamForUser();
 
   return (
-    <Table className="mt-8 px-12">
+    <Table className="mt-8">
       <TableHeader>
         <TableRow className="font-heading hover:bg-transparent border-our-gray">
           <TableHead className="w-[200px] text-our-gray">Job Title</TableHead>
