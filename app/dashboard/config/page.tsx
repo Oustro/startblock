@@ -25,7 +25,7 @@ export default async function Config() {
     <main className="p-8">
       <h1 className="text-4xl font-special">Configuration</h1>
       <ApiKey publicId={team.publicId} teamId={team.id} />
-      <WhiteList teamId={team.id} />
+      <WhiteList teamId={team.id} whitelist={team.whitelist} />
     </main>
   );
 }

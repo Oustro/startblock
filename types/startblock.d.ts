@@ -6,6 +6,7 @@ export interface team {
   publicId: string;
   type: string;
   jobs: job[];
+  whitelist: string[];
 }
 
 export interface job {

@@ -15,7 +15,7 @@ export default function ApiKey({ publicId, teamId } : { publicId: string, teamId
     setLoading(true);
     const newKey = await regeneratePublicId(teamId);
     setKey(newKey);
-    setLoading(false);
+    return setLoading(false);
   }
 
   return (

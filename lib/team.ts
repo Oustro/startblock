@@ -85,8 +85,6 @@ export async function regeneratePublicId(teamId: string): Promise<string> {
     20
   )();
 
-  console.log(newPublicId);
-
   await prisma.team.update({
     where: {
       id: teamId,
@@ -97,4 +95,26 @@ export async function regeneratePublicId(teamId: string): Promise<string> {
   });
 
   return newPublicId;
+}
+
+export async function saveWhiteList(
+  teamId: string,
+  whitelist: string[]
+): Promise<undefined> {
+  const session = await auth();
+
+  if (!session?.user) {
+    throw new Error("You must be logged in to access this resource.");
+  }
+
+  await prisma.team.update({
+    where: {
+      id: teamId,
+    },
+    data: {
+      whitelist: whitelist,
+    },
+  });
+
+  return;
 }

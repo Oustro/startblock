@@ -68,6 +68,7 @@ model Team {
   owners    User[]   @relation("OwnerTeams")
   members   User[]   @relation("MemberTeams")
   activated Boolean  @default(false)
+  whitelist String[]
   shareId   String   @unique
   publicId  String   @unique
   jobs      Job[]
