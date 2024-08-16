@@ -317,9 +317,10 @@ export default function CreateJobForm({ closeModal } : { closeModal: Function })
       <div className="h-full my-auto border-l border-our-gray mx-4" />
       
       <div className="w-full overflow-scroll h-[46rem]">
+
         {step === 1 && (
           <>
-            <p className="text-our-gray">Preview job posting.</p>
+            <p className="w-full bg-slate-100 p-4 border border-our-gray text-center font-special text-our-gray">This is a preview of the job post.</p>
             <h1 className={`text-3xl mt-6 font-heading ${!jobTitle && "text-our-gray" }`}>{jobTitle || "Job title"}</h1>
             <h3 className={`text-lg mt-4 font-heading ${!jobLocation && "text-our-gray" }`}>{jobLocation || "Location"}</h3>
             <h3 className={`text-lg mt-4 font-heading ${!jobPay && "text-our-gray" }`}>{jobPay ? "$"+jobPay : "Salary"}</h3>
@@ -332,7 +333,7 @@ export default function CreateJobForm({ closeModal } : { closeModal: Function })
 
         {step === 2 && (
           <>
-            <p className="text-our-gray">Preview job application.</p>
+            <p className="w-full bg-slate-100 p-4 border border-our-gray text-center font-special text-our-gray">This is a preview of the job application.</p>
             <h1 className="mt-6 font-heading">Full name</h1>
             <Input 
             type="text" 
