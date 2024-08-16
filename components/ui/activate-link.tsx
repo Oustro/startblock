@@ -1,6 +1,7 @@
 import { auth } from "@/utils/auth";
 
 import ActionButton from "./action-button";
+import Input from "@/components/ui/input-field";
 
 import { Ellipsis } from 'lucide-react';
 
@@ -84,7 +85,7 @@ export default async function ActivateLink({ isOwner, page, teamId } : { isOwner
           </TableBody>
         </Table>
       ) : (
-        <div className="-z-20 absolute w-full -mt-96 blur">
+        <div className="-z-20 absolute blur w-full -mt-96 ">
           <div className="w-full border border-our-gray py-6 px-8">
             <h2 className="text-xl font-heading">Team Share Code</h2>
             <p className="text-our-gray mt-2">Share this code with members trying to join your team.</p>
@@ -97,7 +98,32 @@ export default async function ActivateLink({ isOwner, page, teamId } : { isOwner
           <div className="w-full border border-our-gray py-6 px-8 mt-12">
             <h2 className="text-xl font-heading">Public API Key</h2>
             <p className="text-our-gray mt-2">This key unlocks the StartBlock API and SDK to be used on your own apps.</p>
-            <h3 className="mt-6 text-lg font-heading">pk_FAKEAPIKEYHELLO</h3>
+            <div className="flex justify-between gap-4 mt-3">
+              <Input
+              name="whitelist"
+              className="w-[800%]"
+              type="url"
+              disabled={true}
+              required
+              placeholder="https://example.com"
+              />
+              <ActionButton 
+              type="submit"
+              disabled={true}
+              >
+                Add Origin
+              </ActionButton>
+            </div>
+            <Table className="mt-8">
+              <TableBody>
+                <TableRow className="hover:bg-white border-our-gray hover:bg-transparent">
+                  <TableCell className="font-medium">FAKEORIGIN.COM</TableCell>                
+                </TableRow>
+                <TableRow className="hover:bg-white border-our-gray hover:bg-transparent">
+                  <TableCell className="font-medium">FAKEORIGIN.COM</TableCell>                
+                </TableRow>
+              </TableBody>
+            </Table>
           </div>  
           <div className="py-4 px-8 bg-white border-r border-l border-b border-our-gray flex justify-between items-center">
             <p className="text-our-gray text-sm w-full">Check out our documentation to use StartBlock in your apps.</p>
