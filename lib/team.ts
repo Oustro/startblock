@@ -118,3 +118,27 @@ export async function saveWhiteList(
 
   return;
 }
+
+export async function updateTeamName(
+  teamId: string,
+  name: string
+): Promise<undefined> {
+  const session = await auth();
+
+  if (!session?.user) {
+    throw new Error("You must be logged in to access this resource.");
+  }
+
+  console.log(teamId, name);
+
+  await prisma.team.update({
+    where: {
+      id: teamId,
+    },
+    data: {
+      name: name,
+    },
+  });
+
+  return;
+}
