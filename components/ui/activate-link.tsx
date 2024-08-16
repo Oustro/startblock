@@ -85,7 +85,7 @@ export default async function ActivateLink({ isOwner, page, teamId } : { isOwner
           </TableBody>
         </Table>
       ) : (
-        <div className="-z-20 absolute blur w-full -mt-96 ">
+        <div className="-z-20 absolute blur w-full -mt-96">
           <div className="w-full border border-our-gray py-6 px-8">
             <h2 className="text-xl font-heading">Team Share Code</h2>
             <p className="text-our-gray mt-2">Share this code with members trying to join your team.</p>

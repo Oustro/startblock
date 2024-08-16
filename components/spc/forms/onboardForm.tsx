@@ -133,7 +133,7 @@ export default function OnboardForm() {
         {step === 4 && (
           <form>
             <h1 className="text-3xl font-heading">Join an existing team</h1>
-            <h3 className="mt-8 font-heading">Team Share ID</h3>
+            <h3 className="mt-8 font-heading">Team Share Code</h3>
             <Input
             type="text"
             placeholder="Enter your team name..."

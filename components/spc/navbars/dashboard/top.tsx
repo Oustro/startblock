@@ -76,7 +76,7 @@ export default async function TopDashboardNav() {
             >
               <DropdownMenuItem>My Account</DropdownMenuItem>
             </Link>
-            <DropdownMenuItem>Developers</DropdownMenuItem>
+            <DropdownMenuItem>Documentation</DropdownMenuItem>
             <DropdownMenuItem>Changelog</DropdownMenuItem>
             <DropdownMenuItem>
               <SignoutForm />
