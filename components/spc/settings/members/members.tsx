@@ -15,7 +15,7 @@ export default async function TeamMembers({ teamId } : { teamId: string }) {
     <>
       <div className="w-full border border-our-gray py-6 px-8 mt-8">
         <h2 className="text-xl font-heading">Team Members</h2>
-        <p className="text-our-gray mt-2">This key unlocks the StartBlock API and SDK to be used on your own apps.</p>
+        <p className="text-our-gray mt-2">Members of your team that has access to StartBlock.</p>
         <MemberList 
         teamId={teamId}
         memberList={members} 
@@ -24,7 +24,7 @@ export default async function TeamMembers({ teamId } : { teamId: string }) {
         />
       </div>  
       <div className="py-6 px-8 bg-white border-r border-l border-b border-our-gray">
-        <p className="text-our-gray text-sm w-full">Check out our documentation to use StartBlock in your apps.</p>
+        <p className="text-our-gray text-sm w-full">Only team owners have access to billing information.</p>
       </div>    
     </>
   )

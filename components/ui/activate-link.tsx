@@ -56,7 +56,7 @@ export default async function ActivateLink({ isOwner, page, teamId } : { isOwner
             <ActionButton
             className="w-36 mt-8"
             >
-              Activate Your Team
+              Activate team
             </ActionButton>
           </Link>
         )}

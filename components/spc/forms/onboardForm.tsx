@@ -49,7 +49,13 @@ export default function OnboardForm() {
     setLoading(true);
     setError("");
 
-    await joinTeam(teamShareCode);
+    const joinedTeam = await joinTeam(teamShareCode);
+
+    if (!joinedTeam) {
+      setError("Team not found");
+      setLoading(false);
+      return;
+    }
 
     await handleUpdateUser(1);
     
@@ -138,7 +144,10 @@ export default function OnboardForm() {
             <ActionWord
             className="mt-8"
             type="button"
-            onClick={() => setStep(4)}
+            onClick={() => {
+              setError("");
+              setStep(4)
+            }}
             >
               I want to join an existing team
             </ActionWord>
@@ -170,11 +179,18 @@ export default function OnboardForm() {
             <ActionWord
             className="mt-8"
             type="button"
-            onClick={() => setStep(3)}
+            onClick={() => {
+              setError("");
+              setStep(3)
+            }}
             >
               I want to set up a new team
             </ActionWord>
           </form>
+        )}
+
+        {error && (
+          <p className="text-red-500 fixed mt-4 mx-auto">{error}</p>
         )}
       </div>
     </div>

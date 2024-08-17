@@ -33,11 +33,21 @@ export async function createTeam(teamName: string): Promise<undefined> {
   return;
 }
 
-export async function joinTeam(teamShareCode: string): Promise<undefined> {
+export async function joinTeam(teamShareCode: string): Promise<boolean> {
   const session = await auth();
 
   if (!session?.user) {
     throw new Error("You must be logged in to access this resource.");
+  }
+
+  const team = await prisma.team.findUnique({
+    where: {
+      shareId: teamShareCode,
+    },
+  });
+
+  if (!team) {
+    return false;
   }
 
   await prisma.team.update({
@@ -53,7 +63,7 @@ export async function joinTeam(teamShareCode: string): Promise<undefined> {
     },
   });
 
-  return;
+  return true;
 }
 
 export async function getTeamForUser(): Promise<team | undefined> {

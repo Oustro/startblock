@@ -31,7 +31,7 @@ export default function TeamName({ teamName, teamId } : { teamName: string, team
     >
       <div className="w-full border border-our-gray py-6 px-8 mt-8">
         <h2 className="text-xl font-heading">Edit Team Name</h2>
-        <p className="text-our-gray mt-2">This key unlocks the StartBlock API and SDK to be used on your own apps.</p>
+        <p className="text-our-gray mt-2">This is the public name of the company or team hiring.</p>
         <Input
         name="teamName"
         disabled={loading}

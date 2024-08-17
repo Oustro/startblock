@@ -52,7 +52,7 @@ export default async function TeamBilling({ teamId, isOwner, activated } : { tea
     <>
       <div className="w-full border border-our-gray py-6 px-8 mt-8">
         <h2 className="text-xl font-heading">Billing</h2>
-        <p className="text-our-gray mt-2">This key unlocks the StartBlock API and SDK to be used on your own apps.</p>
+        <p className="text-our-gray mt-2">Manage your billing for StartBlock.</p>
         {isOwner ? (
           <Link
           href={portalUrl}
@@ -60,7 +60,7 @@ export default async function TeamBilling({ teamId, isOwner, activated } : { tea
             <ActionButton
             className="w-40 mt-6"
             >
-              {team?.activated ? 'Manage Billing' : 'Activate Team'}
+              {team?.activated ? 'Manage billing' : 'Activate team'}
             </ActionButton>
           </Link>
         ) : (
@@ -68,7 +68,7 @@ export default async function TeamBilling({ teamId, isOwner, activated } : { tea
         )}
       </div>  
       <div className="py-4 px-8 bg-white border-r border-l border-b border-our-gray flex justify-between items-center">
-        <p className="text-our-gray text-sm w-full">Check out our documentation to use StartBlock in your apps.</p>
+        <p className="text-our-gray text-sm w-full">Email <Link className="underline" href="mailto:billing@startblock.me">billing@startblock.me</Link> if you have any questions about pricing.</p>
       </div>
     </>
   )

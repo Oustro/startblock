@@ -17,11 +17,11 @@ export default async function Settings() {
       />
       <div className="w-full border border-our-gray py-6 px-8 mt-8">
         <h2 className="text-xl font-heading">Team Share Code</h2>
-        <p className="text-our-gray mt-2">This key unlocks the StartBlock API and SDK to be used on your own apps.</p>
+        <p className="text-our-gray mt-2">This code can be used by members to join this team during onboarding.</p>
         <h3 className="mt-6 text-lg font-heading">{team?.shareId}</h3>
       </div>  
       <div className="py-6 px-8 bg-white border-r border-l border-b border-our-gray">
-        <p className="text-our-gray text-sm w-full">Check out our documentation to use StartBlock in your apps.</p>
+        <p className="text-our-gray text-sm w-full">Do not share this code except with people on your team.</p>
       </div>
       <TeamMembers 
       teamId={team?.id as string} 
