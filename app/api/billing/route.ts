@@ -21,6 +21,7 @@ export async function POST(request: NextRequest) {
         },
         data: {
           activated: true,
+          stripeCustomerId: event.data.object.customer as string,
         },
       });
     } else if (event.type === "customer.subscription.deleted") {
@@ -30,6 +31,7 @@ export async function POST(request: NextRequest) {
         },
         data: {
           activated: false,
+          stripeCustomerId: null,
         },
       });
 

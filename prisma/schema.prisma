@@ -69,6 +69,7 @@ model Team {
   members   User[]   @relation("MemberTeams")
   activated Boolean  @default(false)
   whitelist String[]
+  stripeCustomerId String?
   shareId   String   @unique
   publicId  String   @unique
   jobs      Job[]

@@ -4,6 +4,7 @@ export interface team {
   activated: boolean;
   shareId: string;
   publicId: string;
+  stripeCustomerId: string;
   type: string;
   jobs: job[];
   whitelist: string[];
