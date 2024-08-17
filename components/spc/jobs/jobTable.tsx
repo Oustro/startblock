@@ -42,7 +42,7 @@ export default async function JobTable() {
               <TableCell className="font-medium">{job.title}</TableCell>
               <TableCell>{job.status}</TableCell>
               <TableCell>{job.applicant}</TableCell>
-              <TableCell className="flex justify-end">
+              <TableCell className="text-right">
                 <EllipsisDropdown>
                   {job.id}
                 </EllipsisDropdown>

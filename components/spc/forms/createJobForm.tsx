@@ -322,8 +322,8 @@ export default function CreateJobForm({ closeModal } : { closeModal: Function })
           <>
             <p className="w-full bg-slate-100 p-4 border border-our-gray text-center font-special text-our-gray">This is a preview of the job post.</p>
             <h1 className={`text-3xl mt-6 font-heading ${!jobTitle && "text-our-gray" }`}>{jobTitle || "Job title"}</h1>
-            <h3 className={`text-lg mt-4 font-heading ${!jobLocation && "text-our-gray" }`}>{jobLocation || "Location"}</h3>
-            <h3 className={`text-lg mt-4 font-heading ${!jobPay && "text-our-gray" }`}>{jobPay ? "$"+jobPay : "Salary"}</h3>
+            <h3 className={`text-lg mt-4 ${!jobLocation && "text-our-gray" }`}>{jobLocation || "Location"}</h3>
+            <h3 className={`text-lg mt-4 ${!jobPay && "text-our-gray" }`}>{jobPay ? "$"+jobPay : "Salary"}</h3>
             <h3 className="mt-8 font-heading text-lg">Description</h3>
             <p className={`mt-2 whitespace-pre-wrap ${!jobDescription && "text-our-gray" }`}>{jobDescription || "Job description"}</p>
             <h3 className="mt-8 font-heading text-lg">Requirements</h3>
