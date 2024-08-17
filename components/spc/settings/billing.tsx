@@ -52,7 +52,7 @@ export default async function TeamBilling({ teamId, isOwner, activated } : { tea
     <>
       <div className="w-full border border-our-gray py-6 px-8 mt-8">
         <h2 className="text-xl font-heading">Billing</h2>
-        <p className="text-our-gray mt-2">Manage the $75 / month bill for StartBlock. Cancel anytime.</p>
+        <p className="text-our-gray mt-2">Manage the $85 / month bill for StartBlock. Cancel anytime.</p>
         {isOwner ? (
           <Link
           href={portalUrl}
