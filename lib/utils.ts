@@ -46,3 +46,23 @@ export async function verifyOrigin(
 
   return false;
 }
+
+export function getJobs(publicKey: string) {
+  return prisma.job.findMany({
+    where: {
+      team: {
+        publicId: publicKey,
+      },
+      status: "Active",
+    },
+    select: {
+      id: true,
+      title: true,
+      location: true,
+      salary: true,
+      description: true,
+      requirements: true,
+      questions: true,
+    },
+  });
+}

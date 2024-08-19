@@ -1,5 +1,5 @@
 import { NextResponse, NextRequest } from "next/server";
-import { verifyOrigin } from "@/lib/utils";
+import { verifyOrigin, getJobs } from "@/lib/utils";
 
 export async function GET(request: NextRequest) {
   const publicKey = request.nextUrl.searchParams.get("pk");
@@ -21,10 +21,11 @@ export async function GET(request: NextRequest) {
     return NextResponse.json("Invalid public key", { status: 400 });
   }
 
-  // fetch jobs from database and return them
+  const jobs = await getJobs(publicKey.slice(3));
 
   const response = NextResponse.json({
     status: "OK",
+    jobs: jobs,
   });
 
   return response;
