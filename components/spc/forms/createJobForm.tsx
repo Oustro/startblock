@@ -379,7 +379,7 @@ export default function CreateJobForm({ closeModal } : { closeModal: Function })
                   />
                 ) : question.type === "HDYH" ? (
                   <HearDropdown
-                  disabled={false}
+                  disabled={true}
                   className="mt-3"
                   />
                 ) : (

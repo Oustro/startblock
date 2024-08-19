@@ -8,7 +8,7 @@ import {
 
 import { cn } from "@/lib/utils";
 
-export default function HearDropdown({ className, disabled } : { className?: string, disabled?: boolean }) {
+export default function HearDropdown({ className, disabled, required } : { className?: string, disabled?: boolean, required?: boolean }) {
   const reasons = [
     "Friends/Family",
     "Employee Referral",
@@ -22,8 +22,9 @@ export default function HearDropdown({ className, disabled } : { className?: str
   return (
     <Select
     disabled={disabled}
+    required={required}
     >
-      <SelectTrigger className={cn("rounded-none w-fit gap-4 border-our-gray", className)}>
+      <SelectTrigger className={cn("rounded-none bg-transparent w-fit gap-4 border-our-gray", className)}>
         <SelectValue placeholder="Select..." />
       </SelectTrigger>
       <SelectContent className="rounded-none mt-1">

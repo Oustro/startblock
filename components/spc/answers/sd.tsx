@@ -8,7 +8,7 @@ import {
 
 import { cn } from "@/lib/utils";
 
-export default function SchoolDropdown({ className, disabled } : { className?: string, disabled?: boolean }) {
+export default function SchoolDropdown({ className, disabled, required, chooseSchool } : { className?: string, disabled?: boolean, required?: boolean, chooseSchool?: Function }) {
   const schools = [
     "Amherst College",
     "Boston College",
@@ -59,9 +59,11 @@ export default function SchoolDropdown({ className, disabled } : { className?: s
 
   return (
     <Select
+    onValueChange={(e) => chooseSchool && chooseSchool(e)}
     disabled={disabled}
+    required={required}
     >
-      <SelectTrigger className={cn("rounded-none w-fit gap-4 border-our-gray", className)}>
+      <SelectTrigger className={cn("rounded-none bg-transparent w-fit gap-4 border-our-gray", className)}>
         <SelectValue placeholder="Select..." />
       </SelectTrigger>
       <SelectContent className="rounded-none mt-1">

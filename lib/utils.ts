@@ -63,6 +63,11 @@ export function getJobs(publicKey: string) {
       description: true,
       requirements: true,
       questions: true,
+      team: {
+        select: {
+          name: true,
+        },
+      },
     },
   });
 }
