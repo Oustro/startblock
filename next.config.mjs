@@ -17,6 +17,11 @@ const nextConfig = {
             key: "Access-Control-Allow-Headers",
             value: "Content-Type",
           },
+          {
+            key: "Content-Security-Policy",
+            value:
+              "upgrade-insecure-requests; default-src https: 'self' localhost:*",
+          },
         ],
       },
     ];
