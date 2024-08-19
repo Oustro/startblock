@@ -8,7 +8,7 @@ import {
 
 import { cn } from "@/lib/utils";
 
-export default function SchoolDropdown({ className, disabled, required, chooseSchool } : { className?: string, disabled?: boolean, required?: boolean, chooseSchool?: Function }) {
+export default function SchoolDropdown({ className, disabled, required, answerQuestionFunction, index } : { className?: string, disabled?: boolean, required?: boolean, answerQuestionFunction?: Function, index?: number }) {
   const schools = [
     "Amherst College",
     "Boston College",
@@ -59,7 +59,7 @@ export default function SchoolDropdown({ className, disabled, required, chooseSc
 
   return (
     <Select
-    onValueChange={(e) => chooseSchool && chooseSchool(e)}
+    onValueChange={(e) => answerQuestionFunction && answerQuestionFunction("School", e, index)}
     disabled={disabled}
     required={required}
     >

@@ -8,9 +8,10 @@ import {
 
 import { cn } from "@/lib/utils";
 
-export default function YesNoDropdown({ className, disabled, required } : { className?: string, disabled?: boolean, required?: boolean }) {
+export default function YesNoDropdown({ className, disabled, required, answerQuestionFunction, index, question } : { className?: string, disabled?: boolean, required?: boolean, answerQuestionFunction?: Function, index?: number, question?: string }) {
   return (
     <Select
+    onValueChange={(e) => answerQuestionFunction && answerQuestionFunction(question, e, index)}
     disabled={disabled}
     required={required}
     >

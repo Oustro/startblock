@@ -8,7 +8,7 @@ import {
 
 import { cn } from "@/lib/utils";
 
-export default function HearDropdown({ className, disabled, required } : { className?: string, disabled?: boolean, required?: boolean }) {
+export default function HearDropdown({ className, disabled, required, answerQuestionFunction, index } : { className?: string, disabled?: boolean, required?: boolean, answerQuestionFunction?: Function, index?: number }) {
   const reasons = [
     "Friends/Family",
     "Employee Referral",
@@ -21,6 +21,7 @@ export default function HearDropdown({ className, disabled, required } : { class
 
   return (
     <Select
+    onValueChange={(e) => answerQuestionFunction && answerQuestionFunction("How did you hear about us?", e, index)}
     disabled={disabled}
     required={required}
     >

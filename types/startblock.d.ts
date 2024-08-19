@@ -28,6 +28,11 @@ export interface questions {
   type: string;
 }
 
+export interface answers {
+  question: string;
+  answer: string;
+}
+
 export interface memberList {
   name: string | null;
   id: string | null;
