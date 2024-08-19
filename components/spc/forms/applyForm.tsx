@@ -18,7 +18,6 @@ import HearDropdown from "../answers/hdyh";
 export default function ApplyForm({ className, questions } : { className?: string, questions: questions[] }) {
   const [appAnswers, setAppAnswers] = useState<answers[]>([]);
 
-
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     // Process formData as needed
@@ -59,7 +58,7 @@ export default function ApplyForm({ className, questions } : { className?: strin
           <h1 className="mt-6 font-heading">{question.question}</h1>
           {question.type === "SA" ? (
             <Input 
-            type="text" 
+            type={question.question === "Linkedin" ? "url" : "text"} 
             placeholder="Enter your answer..." 
             name="question-1-r"
             onChange={(e) => answerQuestion(question.question, e.target.value, (index + 2))}
@@ -99,6 +98,10 @@ export default function ApplyForm({ className, questions } : { className?: strin
           ) : (
             <FileInput 
             className="mt-3"
+            index={index + 2}
+            setFile={answerQuestion}
+            required
+            accept="application/pdf"
             />
           )}
         </div>
