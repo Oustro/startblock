@@ -6,9 +6,7 @@ import { answers, questions } from "@/types/startblock";
 
 import Input from "@/components/ui/input-field";
 import TextArea from "@/components/ui/textarea-field";
-import ActionWord from "@/components/ui/action-word";
 import ActionButton from "@/components/ui/action-button";
-import CheckBox from "@/components/ui/input-checkbox";
 
 import FileInput from "../answers/file";
 import YesNoDropdown from "../answers/yn";
@@ -17,11 +15,16 @@ import HearDropdown from "../answers/hdyh";
 
 export default function ApplyForm({ className, questions } : { className?: string, questions: questions[] }) {
   const [appAnswers, setAppAnswers] = useState<answers[]>([]);
+  const [loading, setLoading] = useState(false);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    // Process formData as needed
-    return console.log(appAnswers);
+    setLoading(true);
+
+    // apply to job
+
+    setAppAnswers([]);
+    return setLoading(false);
   };
 
   function answerQuestion(applicantQuestion: string, applicantAnswer: string, index: number) {
@@ -41,6 +44,7 @@ export default function ApplyForm({ className, questions } : { className?: strin
       placeholder="Enter your answer..."
       name="question-0-r" 
       onChange={(e) => answerQuestion("Full name", e.target.value, 0)}
+      disabled={loading}
       required
       className="mt-3"
       />
@@ -50,6 +54,7 @@ export default function ApplyForm({ className, questions } : { className?: strin
       placeholder="Enter your answer..." 
       name="question-1-r"
       onChange={(e) => answerQuestion("Email", e.target.value, 1)}
+      disabled={loading}
       required
       className="mt-3"
       />
@@ -62,6 +67,7 @@ export default function ApplyForm({ className, questions } : { className?: strin
             placeholder="Enter your answer..." 
             name="question-1-r"
             onChange={(e) => answerQuestion(question.question, e.target.value, (index + 2))}
+            disabled={loading}
             required
             className="mt-3"
             />
@@ -70,6 +76,7 @@ export default function ApplyForm({ className, questions } : { className?: strin
             placeholder="Enter your answer..."
             name="question-1-r"
             onChange={(e) => answerQuestion(question.question, e.target.value, index + 2)}
+            disabled={loading}
             required
             className="mt-3"
             />
@@ -79,6 +86,7 @@ export default function ApplyForm({ className, questions } : { className?: strin
             question={question.question}
             index={index + 2}
             answerQuestionFunction={answerQuestion}
+            disabled={loading}
             required
             />
           ) : question.type === "SD" ? (
@@ -86,6 +94,7 @@ export default function ApplyForm({ className, questions } : { className?: strin
             index={index + 2}
             className="mt-3"
             answerQuestionFunction={answerQuestion}
+            disabled={loading}
             required
             />
           ) : question.type === "HDYH" ? (
@@ -93,6 +102,7 @@ export default function ApplyForm({ className, questions } : { className?: strin
             index={index + 2}
             className="mt-3"
             answerQuestionFunction={answerQuestion}
+            disabled={loading}
             required
             />
           ) : (
@@ -100,17 +110,20 @@ export default function ApplyForm({ className, questions } : { className?: strin
             className="mt-3"
             index={index + 2}
             setFile={answerQuestion}
+            disabled={loading}
             required
             accept="application/pdf"
             />
           )}
         </div>
       ))}
-      <button
+      <ActionButton
+      className="mt-6"
       type="submit"
+      disabled={loading}
       >
-        Submit
-      </button>
+        Apply
+      </ActionButton>
     </form>
   )
 }

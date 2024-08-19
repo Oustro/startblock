@@ -40,7 +40,7 @@ export default function CreateJobForm({ closeModal } : { closeModal: Function })
 
   const router = useRouter()
 
-  const requiredQuestions = ["Full name", "Email", "Voluntary self-identification", "Voluntary self-identification of disability"]
+  const requiredQuestions = ["Full name", "Email"]
   const potentialQuestions= [
     { 
       question: "Resume", 
@@ -419,10 +419,6 @@ export default function CreateJobForm({ closeModal } : { closeModal: Function })
                 )}
               </div>
             ))}
-            <h1 className="mt-6 font-heading">Voluntary self-indentification</h1>
-            <p>...</p>
-            <h1 className="mt-6 font-heading">Voluntary self-indentification of disability</h1>
-            <p>...</p>
           </>
         )}
       </div>
