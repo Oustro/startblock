@@ -14,8 +14,8 @@ export default async function Jobpage({ params } : { params: { publicId: string 
   const jobs = await getJobs(params.publicId);
 
   return (
-    <main className='w-[700px] mx-auto mb-8'>
-      <h1 className='font-heading text-3xl mt-24'>Careers at {jobs[0]?.team.name}</h1>
+    <main className='w-[700px] mx-auto my-8'>
+      <h1 className='font-heading text-3xl'>Careers at {jobs[0]?.team.name}</h1>
       <Accordion
       type="single" 
       collapsible

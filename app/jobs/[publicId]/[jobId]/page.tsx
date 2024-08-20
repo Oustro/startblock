@@ -7,8 +7,8 @@ export default async function Job({ params } : { params: { publicId: string, job
   const job = await getJob(params.jobId);
 
   return (
-     <main className='w-[700px] mx-auto mb-8'>
-        <h1 className='font-heading text-3xl mt-24'>{job?.title} at {job?.team.name}</h1>
+     <main className='w-[700px] mx-auto my-8'>
+        <h1 className='font-heading text-3xl'>{job?.title} at {job?.team.name}</h1>
         <h3 className="text-lg mt-4">{job?.location}</h3>
         <h3 className="text-lg mt-4">${job?.salary}</h3>
         <h3 className="mt-8 font-heading text-lg">Description</h3>

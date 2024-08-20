@@ -4,9 +4,9 @@ import { usePathname } from "next/navigation";
 
 import TabLink from "@/components/ui/tab-link";
 
-import { Users, House, Settings, Shapes } from 'lucide-react';
+import { House, Settings, Shapes, ExternalLink } from 'lucide-react';
 
-export default function SideDashboardNav() {
+export default function SideDashboardNav({ publicId } : { publicId: string }) {
   return (
     <nav className="shadow-lg w-24 bg-white flex z-20 flex-col items-center h-screen pt-3 gap-4 fixed border-r border-our-gray">
       <TabLink 
@@ -17,11 +17,11 @@ export default function SideDashboardNav() {
         <House className="h-6 w-6" />
       </TabLink>
       <TabLink 
-      link="/dashboard/applicants" 
+      link={`/jobs/${publicId}`} 
       activate={usePathname() === "/dashboard/applicants"} 
-      label="Applicant Pool"
+      label="Live job board"
       >
-        <Users className="h-6 w-6" />
+        <ExternalLink className="h-6 w-6" />
       </TabLink>
       <TabLink 
       link="/dashboard/config" 
