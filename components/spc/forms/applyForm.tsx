@@ -14,7 +14,6 @@ import SchoolDropdown from "../answers/sd";
 import HearDropdown from "../answers/hdyh";
 
 import { applyToJob } from "@/lib/public";
-
 import { cn } from "@/lib/utils"
 
 export default function ApplyForm({ className, questions, jobId } : { className?: string, questions: questions[], jobId: string }) {

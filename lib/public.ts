@@ -61,6 +61,29 @@ export async function getJobs(publicKey: string) {
   });
 }
 
+export async function getJob(jobId: string) {
+  return prisma.job.findUnique({
+    where: {
+      id: jobId,
+      status: "Active",
+    },
+    select: {
+      id: true,
+      title: true,
+      location: true,
+      salary: true,
+      description: true,
+      requirements: true,
+      questions: true,
+      team: {
+        select: {
+          name: true,
+        },
+      },
+    },
+  });
+}
+
 export async function applyToJob(jobId: string, answers: answers[]) {
   await prisma.application.create({
     data: {
