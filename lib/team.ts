@@ -80,12 +80,20 @@ export async function getTeamForUser(): Promise<team | undefined> {
     include: {
       ownedTeams: {
         include: {
-          jobs: true,
+          jobs: {
+            orderBy: {
+              createdAt: "asc",
+            },
+          },
         },
       },
       memberTeams: {
         include: {
-          jobs: true,
+          jobs: {
+            orderBy: {
+              createdAt: "asc",
+            },
+          },
         },
       },
     },

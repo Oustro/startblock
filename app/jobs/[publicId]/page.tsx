@@ -1,4 +1,4 @@
-import { getJobs } from '@/lib/utils';
+import { getJobs } from '@/lib/public';
 
 import {
   Accordion,
@@ -15,7 +15,7 @@ export default async function Jobpage({ params } : { params: { publicId: string 
 
   return (
     <main className='w-[700px] mx-auto mb-8'>
-      <h1 className='font-heading text-3xl mt-24'>Careers at {jobs[0].team.name}</h1>
+      <h1 className='font-heading text-3xl mt-24'>Careers at {jobs[0]?.team.name}</h1>
       <Accordion
       type="single" 
       collapsible
@@ -43,6 +43,7 @@ export default async function Jobpage({ params } : { params: { publicId: string 
               <ApplyForm
               questions={job.questions as unknown as questions[]}
               className='mt-8'
+              jobId={job.id}
               />
             </AccordionContent>
           </AccordionItem>

@@ -1,5 +1,5 @@
 import { NextResponse, NextRequest } from "next/server";
-import { verifyOrigin, getJobs } from "@/lib/utils";
+import { verifyOrigin, getJobs } from "@/lib/public";
 
 export async function GET(request: NextRequest) {
   const publicKey = request.nextUrl.searchParams.get("pk");

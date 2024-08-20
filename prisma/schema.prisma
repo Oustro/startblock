@@ -87,4 +87,16 @@ model Job {
   applicant    Int     @default(0)
   teamId       String
   team         Team     @relation(fields: [teamId], references: [id])
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  applications Application[]
+}
+
+model Application {
+  id           String   @id @default(cuid())
+  jobId        String
+  job          Job      @relation(fields: [jobId], references: [id])
+  status       String   @default("Applied")
+  createdAt    DateTime @default(now())
+  answers      Json
 }
