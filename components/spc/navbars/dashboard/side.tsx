@@ -19,7 +19,7 @@ export default function SideDashboardNav({ publicId } : { publicId: string }) {
       <TabLink 
       link={`/jobs/${publicId}`} 
       activate={usePathname() === "/dashboard/applicants"} 
-      label="Live job board"
+      label="Visit job board"
       >
         <ExternalLink className="h-6 w-6" />
       </TabLink>
