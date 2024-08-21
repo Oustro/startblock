@@ -97,6 +97,7 @@ model Application {
   jobId        String
   job          Job      @relation(fields: [jobId], references: [id])
   status       String   @default("Applied")
+  score        String?
   createdAt    DateTime @default(now())
   answers      Json
 }

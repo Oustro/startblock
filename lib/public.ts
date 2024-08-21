@@ -52,6 +52,7 @@ export async function getJobs(publicKey: string) {
       team: {
         select: {
           name: true,
+          activated: true,
         },
       },
     },
@@ -78,6 +79,7 @@ export async function getJob(jobId: string) {
       team: {
         select: {
           name: true,
+          activated: true,
         },
       },
     },

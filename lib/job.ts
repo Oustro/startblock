@@ -38,3 +38,19 @@ export async function createJob(
 
   return;
 }
+
+export async function getJobById(jobId: string) {
+  const session = await auth();
+
+  if (!session?.user) {
+    throw new Error("You must be logged in to access this resource.");
+  }
+
+  const job = await prisma.job.findUnique({
+    where: {
+      id: jobId,
+    },
+  });
+
+  return job;
+}

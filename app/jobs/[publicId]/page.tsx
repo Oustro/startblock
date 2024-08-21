@@ -13,6 +13,15 @@ import { questions } from '@/types/startblock';
 export default async function Jobpage({ params } : { params: { publicId: string } }) {
   const jobs = await getJobs(params.publicId);
 
+  if (!jobs[0]?.team.activated || !jobs) {
+    return (
+      <main className='flex flex-col h-screen w-fit mx-auto justify-center text-left'>
+        <h1 className='font-special text-xl'>Unfortunately, this job board is not available.</h1>
+        <h1 className='mt-4 text-our-gray'>Please check back again soon.</h1>
+      </main>
+    )
+  }
+
   return (
     <main className='w-[700px] mx-auto my-8'>
       <h1 className='font-heading text-3xl'>Careers at {jobs[0]?.team.name}</h1>

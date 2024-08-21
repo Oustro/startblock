@@ -6,6 +6,15 @@ import { questions } from '@/types/startblock';
 export default async function Job({ params } : { params: { publicId: string, jobId: string } }) {
   const job = await getJob(params.jobId);
 
+  if (!job?.team.activated || !job) {
+    return (
+      <main className='flex flex-col h-screen w-fit mx-auto justify-center text-left'>
+        <h1 className='font-special text-xl'>Unfortunately, this job is not available.</h1>
+        <h1 className='mt-4 text-our-gray'>Please check back again soon.</h1>
+      </main>
+    )
+  }
+
   return (
      <main className='w-[700px] mx-auto my-8'>
         <h1 className='font-heading text-3xl'>{job?.title} at {job?.team.name}</h1>
