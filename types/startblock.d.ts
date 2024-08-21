@@ -33,6 +33,14 @@ export interface answers {
   answer: string;
 }
 
+export interface applicant {
+  id: string;
+  jobId: string;
+  status: string;
+  score: string | null;
+  answers: answers[];
+}
+
 export interface memberList {
   name: string | null;
   id: string | null;

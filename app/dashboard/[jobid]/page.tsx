@@ -1,41 +1,30 @@
 import { getJobById } from "@/lib/job"
 
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip"
+import ApplicantTable from "@/components/spc/jobs/applicantTable";
+import ActionWord from "@/components/ui/action-word";
 
-export default async function JobDashboard() {
+import { ChevronLeft } from "lucide-react";
 
-  const job = await getJobById("cm01tayey00032tzqqvglk45b");
+import Link from "next/link";
+
+export default async function JobDashboard({ params } : { params: { jobid: string } }) {
+
+  const job = await getJobById(params.jobid);
 
   return (
     <main className="p-8">
-      <div className="flex items-center gap-4">
-        <TooltipProvider
-        delayDuration={0.3}
-        >
-          <Tooltip>
-            <TooltipTrigger>
-              {job?.status === "Active" ? (
-                <div className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></div>
-              ) : (
-                <div className="relative inline-flex rounded-full h-3 w-3 border border-our-gray"></div>
-              )}
-            </TooltipTrigger>
-            <TooltipContent
-            align="center"
-            side="bottom"
-            className="z-50"
-            >
-              <p>{job?.status} job</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
-        <h1 className="text-4xl font-special">{job?.title}</h1>
-      </div>
+      <Link 
+      href="/dashboard"
+      >
+        <ActionWord className="mb-8 flex items-center gap-1">
+          <ChevronLeft 
+          className="h-4 w-4"
+          />
+          Back to dashboard
+        </ActionWord>
+      </Link>
+      <h1 className="text-4xl font-special">{job?.title}</h1>
+      <ApplicantTable jobId={params.jobid} />
     </main>
   )
 }

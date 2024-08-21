@@ -21,7 +21,7 @@ export default async function JobTable() {
     <Table className="mt-8">
       <TableHeader>
         <TableRow className="font-heading hover:bg-transparent border-our-gray">
-          <TableHead className="w-[200px] text-our-gray">Job Title</TableHead>
+          <TableHead className="w-[300px] text-our-gray">Job Title</TableHead>
           <TableHead className="text-our-gray w-[150px]">Status</TableHead>
           <TableHead className="text-our-gray">Applicants</TableHead>
         </TableRow>

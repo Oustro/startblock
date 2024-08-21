@@ -54,3 +54,19 @@ export async function getJobById(jobId: string) {
 
   return job;
 }
+
+export async function getApplicantsForJob(jobId: string) {
+  const session = await auth();
+
+  if (!session?.user) {
+    throw new Error("You must be logged in to access this resource.");
+  }
+
+  const applicants = await prisma.application.findMany({
+    where: {
+      jobId: jobId,
+    },
+  });
+
+  return applicants;
+}
