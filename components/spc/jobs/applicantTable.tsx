@@ -39,8 +39,8 @@ export default async function ApplicantTable({ jobId } : { jobId: string }) {
         <TableRow key={applicant.id} className="hover:bg-white border-our-gray hover:cursor-pointer">
           <TableCell className="font-medium">{applicant.answers[0].answer}</TableCell>
           <TableCell>{applicant.answers[1].answer}</TableCell>
-          <TableCell><UpdateApplicantStatus value={applicant.status} /></TableCell>
-          <TableCell><UpdateApplicantScore value={applicant.score} /></TableCell>
+          <TableCell><UpdateApplicantStatus value={applicant.status} applicationId={applicant.id} /></TableCell>
+          <TableCell><UpdateApplicantScore value={applicant.score} applicationId={applicant.id} /></TableCell>
           <TableCell className="text-right">
             <EllipsisDropdown>
               {applicant.id}

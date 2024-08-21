@@ -1,3 +1,9 @@
+"use client";
+
+import { useState } from "react";
+
+import { updateApplicantScore } from "@/lib/job";
+
 import {
   Select,
   SelectContent,
@@ -6,7 +12,9 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 
-export default function UpdateApplicantScore({ value } : { value: string | null | undefined }) {
+export default function UpdateApplicantScore({ value, applicationId } : { value: string | null | undefined, applicationId: string }) {
+  const [loading, setLoading] = useState(false);
+  
   const scores = [
     "Weak Candidate",
     "Below Average Candidate",
@@ -14,9 +22,19 @@ export default function UpdateApplicantScore({ value } : { value: string | null 
     "Strong Candidate",
   ];
 
+  async function updateScore(score: string) {
+    setLoading(true);
+
+    await updateApplicantScore(applicationId, score);
+    
+    return setLoading(false);
+  }
+
   return (
     <Select
     defaultValue={value || ""}
+    disabled={loading}
+    onValueChange={(value) => updateScore(value)}
     >
       <SelectTrigger
       className="rounded-none bg-transparent w-fit gap-4 border-our-gray text-sm"

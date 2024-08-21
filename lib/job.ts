@@ -49,8 +49,30 @@ export async function getJobById(jobId: string) {
   const job = await prisma.job.findUnique({
     where: {
       id: jobId,
+      team: {
+        OR: [
+          {
+            owners: {
+              some: {
+                email: session.user.email,
+              },
+            },
+          },
+          {
+            members: {
+              some: {
+                email: session.user.email,
+              },
+            },
+          },
+        ],
+      },
     },
   });
+
+  if (!job) {
+    throw new Error("You do not have permission to view this job.");
+  }
 
   return job;
 }
@@ -69,4 +91,88 @@ export async function getApplicantsForJob(jobId: string) {
   });
 
   return applicants;
+}
+
+export async function updateApplicantStatus(
+  applicationId: string,
+  status: string
+) {
+  const session = await auth();
+
+  if (!session?.user) {
+    throw new Error("You must be logged in to access this resource.");
+  }
+
+  await prisma.application.update({
+    where: {
+      id: applicationId,
+      job: {
+        team: {
+          OR: [
+            {
+              owners: {
+                some: {
+                  email: session.user.email,
+                },
+              },
+            },
+            {
+              members: {
+                some: {
+                  email: session.user.email,
+                },
+              },
+            },
+          ],
+        },
+      },
+    },
+    data: {
+      status: status,
+    },
+  });
+
+  return;
+}
+
+export async function updateApplicantScore(
+  applicationId: string,
+  score: string
+) {
+  const session = await auth();
+
+  if (!session?.user) {
+    throw new Error("You must be logged in to access this resource.");
+  }
+
+  await prisma.application.update({
+    where: {
+      id: applicationId,
+      job: {
+        team: {
+          OR: [
+            {
+              owners: {
+                some: {
+                  email: session.user.email,
+                },
+              },
+            },
+            {
+              members: {
+                some: {
+                  email: session.user.email,
+                },
+              },
+            },
+          ],
+        },
+      },
+    },
+    data: {
+      score: score,
+    },
+  });
+
+  return;
 }
