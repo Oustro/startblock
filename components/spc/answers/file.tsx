@@ -38,7 +38,7 @@ export default function FileInput({ required, className, disabled, value, accept
 
       const newBlob = (await response.json()) as PutBlobResult;
 
-      setFile && setFile("Resume", newBlob.url, index);
+      setFile && setFile("Resume", newBlob.url, index, "F");
       setLoading(false);
     }}
     />

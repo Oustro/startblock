@@ -1,5 +1,3 @@
-import EllipsisDropdown from "@/components/ui/ellipse-dropdown";
-
 import {
   Table,
   TableBody,
@@ -9,12 +7,10 @@ import {
   TableRow,
 } from "@/components/ui/table"
 
-import UpdateApplicantStatus from "./updateApplicantStatus";
-import UpdateApplicantScore from "./updateApplicantScore";
-
 import { getApplicantsForJob } from "@/lib/job";
 
 import { applicant } from "@/types/startblock";
+import ApplicantTableRow from "./applicantTableRow";
 
 export default async function ApplicantTable({ jobId } : { jobId: string }) {
 
@@ -36,17 +32,7 @@ export default async function ApplicantTable({ jobId } : { jobId: string }) {
           <TableCell colSpan={4} className="text-center">No applicants found.</TableCell>
         </TableRow>
       ) : ( applicants?.map((applicant) => (
-        <TableRow key={applicant.id} className="hover:bg-white border-our-gray hover:cursor-pointer">
-          <TableCell className="font-medium">{applicant.answers[0].answer}</TableCell>
-          <TableCell>{applicant.answers[1].answer}</TableCell>
-          <TableCell><UpdateApplicantStatus value={applicant.status} applicationId={applicant.id} /></TableCell>
-          <TableCell><UpdateApplicantScore value={applicant.score} applicationId={applicant.id} /></TableCell>
-          <TableCell className="text-right">
-            <EllipsisDropdown>
-              {applicant.id}
-            </EllipsisDropdown>
-          </TableCell>
-        </TableRow>
+        <ApplicantTableRow key={applicant.id} applicant={applicant} />
       )))}
       </TableBody>
     </Table>

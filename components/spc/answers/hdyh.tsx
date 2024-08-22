@@ -21,7 +21,7 @@ export default function HearDropdown({ className, disabled, required, answerQues
 
   return (
     <Select
-    onValueChange={(e) => answerQuestionFunction && answerQuestionFunction("How did you hear about us?", e, index)}
+    onValueChange={(e) => answerQuestionFunction && answerQuestionFunction("How did you hear about us?", e, index, "HDYH")}
     disabled={disabled}
     required={required}
     >

@@ -32,9 +32,9 @@ export default function ApplyForm({ className, questions, jobId } : { className?
     return setStep(2);
   };
 
-  function answerQuestion(applicantQuestion: string, applicantAnswer: string, index: number) {
+  function answerQuestion(applicantQuestion: string, applicantAnswer: string, index: number, type: string) {
     let answers = appAnswers;
-    answers[index] = { question: applicantQuestion, answer: applicantAnswer };
+    answers[index] = { question: applicantQuestion, answer: applicantAnswer, type: type };
     return setAppAnswers(answers);
   }
 
@@ -50,7 +50,7 @@ export default function ApplyForm({ className, questions, jobId } : { className?
           type="text" 
           placeholder="Enter your answer..."
           name="question-0-r" 
-          onChange={(e) => answerQuestion("Full name", e.target.value, 0)}
+          onChange={(e) => answerQuestion("Full name", e.target.value, 0, "SA")}
           disabled={loading}
           required
           className="mt-3"
@@ -60,7 +60,7 @@ export default function ApplyForm({ className, questions, jobId } : { className?
           type="email" 
           placeholder="Enter your answer..." 
           name="question-1-r"
-          onChange={(e) => answerQuestion("Email", e.target.value, 1)}
+          onChange={(e) => answerQuestion("Email", e.target.value, 1, "E")}
           disabled={loading}
           required
           className="mt-3"
@@ -73,7 +73,7 @@ export default function ApplyForm({ className, questions, jobId } : { className?
                 type={question.question === "Linkedin" ? "url" : "text"} 
                 placeholder="Enter your answer..." 
                 name="question-1-r"
-                onChange={(e) => answerQuestion(question.question, e.target.value, (index + 2))}
+                onChange={(e) => answerQuestion(question.question, e.target.value, (index + 2), "SA")}
                 disabled={loading}
                 required
                 className="mt-3"
@@ -82,7 +82,7 @@ export default function ApplyForm({ className, questions, jobId } : { className?
                 <TextArea
                 placeholder="Enter your answer..."
                 name="question-1-r"
-                onChange={(e) => answerQuestion(question.question, e.target.value, index + 2)}
+                onChange={(e) => answerQuestion(question.question, e.target.value, index + 2, "LA")}
                 disabled={loading}
                 required
                 className="mt-3"

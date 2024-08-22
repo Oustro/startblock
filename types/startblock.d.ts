@@ -31,6 +31,7 @@ export interface questions {
 export interface answers {
   question: string;
   answer: string;
+  type: string;
 }
 
 export interface applicant {

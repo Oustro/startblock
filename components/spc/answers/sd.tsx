@@ -59,7 +59,7 @@ export default function SchoolDropdown({ className, disabled, required, answerQu
 
   return (
     <Select
-    onValueChange={(e) => answerQuestionFunction && answerQuestionFunction("School", e, index)}
+    onValueChange={(e) => answerQuestionFunction && answerQuestionFunction("School", e, index, "SD")}
     disabled={disabled}
     required={required}
     >

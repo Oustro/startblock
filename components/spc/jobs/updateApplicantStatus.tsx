@@ -16,6 +16,7 @@ export default function UpdateApplicantStatus({ value, applicationId } : { value
   const [loading, setLoading] = useState(false);
 
   const status = [
+    "Applied",
     "Interview",
     "Hired",
     "Rejected"
@@ -33,7 +34,7 @@ export default function UpdateApplicantStatus({ value, applicationId } : { value
     <Select
     defaultValue={value}
     disabled={loading}
-    onValueChange={(value) => updateStatus(value)}
+    onValueChange={(e) => updateStatus(e)}
     >
       <SelectTrigger
       className="rounded-none bg-transparent w-fit gap-4 border-our-gray text-sm"
