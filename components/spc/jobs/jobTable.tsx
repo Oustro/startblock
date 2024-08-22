@@ -1,4 +1,5 @@
 import EllipsisDropdown from "@/components/ui/ellipse-dropdown";
+import UpdateJobStatus from "./UpdateJobStatus";
 
 import {
   Table,
@@ -8,8 +9,11 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
 
 import { getTeamForUser } from "@/lib/team";
+
+import { ExternalLink } from "lucide-react";
 
 import Link from "next/link";
 
@@ -44,7 +48,16 @@ export default async function JobTable() {
               <TableCell>{job.applicant}</TableCell>
               <TableCell className="text-right">
                 <EllipsisDropdown>
-                  {job.id}
+                  <Link
+                  href={`/jobs/${team.id}/${job.id}`}
+                  >
+                    <DropdownMenuItem className="flex gap-2 items-center">
+                      <ExternalLink className="w-4 h-4"/>
+                      Job Posting
+                    </DropdownMenuItem>
+                  </Link>
+                  <DropdownMenuItem>Edit</DropdownMenuItem>
+                  <UpdateJobStatus jobId={job.id} currStatus={job.status} />
                 </EllipsisDropdown>
               </TableCell>
             </TableRow>

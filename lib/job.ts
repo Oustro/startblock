@@ -183,3 +183,25 @@ export async function updateApplicantScore(
 
   return;
 }
+
+export async function updateJobStatus(jobId: string, status: string) {
+  const session = await auth();
+
+  if (!session?.user) {
+    throw new Error("You must be logged in to access this resource.");
+  }
+
+  const userTeam = await getTeamForUser();
+
+  await prisma.job.update({
+    where: {
+      id: jobId,
+      teamId: userTeam?.id as string,
+    },
+    data: {
+      status: status,
+    },
+  });
+
+  return;
+}
