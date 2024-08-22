@@ -68,6 +68,13 @@ export async function getJobById(jobId: string) {
         ],
       },
     },
+    include: {
+      applications: {
+        orderBy: {
+          createdAt: "desc",
+        },
+      },
+    },
   });
 
   if (!job) {
