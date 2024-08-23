@@ -15,9 +15,11 @@ export default async function JobBoardNav() {
         href={session ? "/dashboard" : "/"}
         >
           <ActionWord className="mb-8 flex items-center gap-1">
-          <ChevronLeft 
-          className="h-4 w-4"
-          />
+          {session && (
+            <ChevronLeft 
+            className="h-4 w-4"
+            />
+          )}
           {session ? "Back to dashboard" : "Powered by StartBlock"}
         </ActionWord>
       </Link>

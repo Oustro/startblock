@@ -49,9 +49,13 @@ export default async function TopDashboardNav() {
         )}
       </div>
       <div className="flex items-center gap-8">
-        <ActionWord>
-          Feedback
-        </ActionWord>
+        <Link
+        href="/dashboard/account"
+        >
+          <ActionWord>
+            My Account
+          </ActionWord>
+        </Link>
         <DropdownMenu>
           <DropdownMenuTrigger
           className="outline-none"
@@ -71,11 +75,7 @@ export default async function TopDashboardNav() {
               <h6 className="font-heading">{session?.user.name}</h6>
               <p className="text-our-gray text-sm">{session?.user.email}</p>
             </div>
-            <Link
-            href="/dashboard/account"
-            >
-              <DropdownMenuItem>My Account</DropdownMenuItem>
-            </Link>
+            <DropdownMenuItem>Feedback</DropdownMenuItem>
             <DropdownMenuItem>Documentation</DropdownMenuItem>
             <DropdownMenuItem>Changelog</DropdownMenuItem>
             <DropdownMenuItem>

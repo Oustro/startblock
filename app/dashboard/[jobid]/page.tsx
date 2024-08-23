@@ -16,14 +16,14 @@ export default async function JobDashboard({ params } : { params: { jobid: strin
       <Link 
       href="/dashboard"
       >
-        <ActionWord className="mb-8 flex items-center gap-1">
+        <ActionWord className="flex items-center gap-1">
           <ChevronLeft 
           className="h-4 w-4"
           />
           Back to dashboard
         </ActionWord>
       </Link>
-      <h1 className="text-4xl font-special">{job?.title}</h1>
+      <h1 className="text-4xl mt-4 font-special">{job?.title}</h1>
       <ApplicantTable jobId={params.jobid} />
     </main>
   )
