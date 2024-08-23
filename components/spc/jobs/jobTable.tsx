@@ -48,6 +48,8 @@ export default async function JobTable() {
               <TableCell>{job.applicant}</TableCell>
               <TableCell className="text-right">
                 <EllipsisDropdown>
+                  <UpdateJobStatus jobId={job.id} currStatus={job.status} />
+                  <DropdownMenuItem>Edit</DropdownMenuItem>
                   <Link
                   href={`/jobs/${team.id}/${job.id}`}
                   >
@@ -56,8 +58,6 @@ export default async function JobTable() {
                       Job Posting
                     </DropdownMenuItem>
                   </Link>
-                  <DropdownMenuItem>Edit</DropdownMenuItem>
-                  <UpdateJobStatus jobId={job.id} currStatus={job.status} />
                 </EllipsisDropdown>
               </TableCell>
             </TableRow>
