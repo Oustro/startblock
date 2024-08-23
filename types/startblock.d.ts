@@ -40,6 +40,7 @@ export interface applicant {
   status: string;
   score: string | null;
   answers: answers[];
+  createdAt: Date;
 }
 
 export interface memberList {

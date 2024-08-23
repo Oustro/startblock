@@ -18,6 +18,7 @@ import Link from "next/link";
 import { ExternalLink } from "lucide-react";
 
 export default function ApplicantTableRow({ applicant } : {applicant: applicant }) {
+
   return (
     <Drawer.Root direction="right">
       <Drawer.Trigger asChild>
@@ -27,8 +28,11 @@ export default function ApplicantTableRow({ applicant } : {applicant: applicant 
           <TableCell><UpdateApplicantStatus value={applicant.status} applicationId={applicant.id} /></TableCell>
           <TableCell><UpdateApplicantScore value={applicant.score} applicationId={applicant.id} /></TableCell>
           <TableCell className="text-right">
-            <EllipsisDropdown>
-              {applicant.id}
+            <EllipsisDropdown contentClassname="py-3 px-4">
+              <p className="text-sm font-heading">Applied</p>
+              <p className="text-sm text-our-gray mt-1">{applicant.createdAt.toDateString()}</p>
+              <p className="text-sm mt-4 font-heading">Origin</p>
+              <p className="text-sm text-our-gray mt-1">startblock.com</p>
             </EllipsisDropdown>
           </TableCell>
         </TableRow>

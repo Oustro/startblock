@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 
 import { Ellipsis } from 'lucide-react';
 
-export default function EllipsisDropdown({ children, className } : { children: React.ReactNode, className?: string }) {
+export default function EllipsisDropdown({ children, className, contentClassname } : { children: React.ReactNode, className?: string, contentClassname?: string }) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
@@ -18,7 +18,7 @@ export default function EllipsisDropdown({ children, className } : { children: R
       </DropdownMenuTrigger>
       <DropdownMenuContent
       align="end"
-      className="rounded-none p-2 mt-1"
+      className={cn("rounded-none p-2 mt-1", contentClassname)}
       > 
         {children}
       </DropdownMenuContent>
