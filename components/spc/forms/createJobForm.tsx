@@ -21,18 +21,18 @@ import EllipsisDropdown from "@/components/ui/ellipse-dropdown";
 
 import { DropdownMenuItem } from "@/components/ui/dropdown-menu"
 
-import { questions } from "@/types/startblock";
+import { questions, job } from "@/types/startblock";
 import { createJob } from "@/lib/job";
 
-export default function CreateJobForm({ closeModal } : { closeModal: Function }) {
+export default function CreateJobForm({ closeModal, job } : { closeModal: Function, job?: job }) {
   const [step, setStep] = useState(1)
   const [loading, setLoading] = useState(false)
 
-  const [jobTitle, setJobTitle] = useState("")
-  const [jobDescription, setJobDescription] = useState("")
-  const [jobRequirements, setJobRequirements] = useState("")
-  const [jobLocation, setJobLocation] = useState("")
-  const [jobPay, setJobPay] = useState("")
+  const [jobTitle, setJobTitle] = useState(job?.title || "")
+  const [jobDescription, setJobDescription] = useState(job?.description || "")
+  const [jobRequirements, setJobRequirements] = useState(job?.requirements || "")
+  const [jobLocation, setJobLocation] = useState(job?.location || "")
+  const [jobPay, setJobPay] = useState(job?.salary || "")
 
   const [additionalQuestions, setAdditionalQuestions] = useState<questions[]>([])
   const [customQuestions, setCustomQuestions] = useState<questions[]>([])

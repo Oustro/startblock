@@ -49,13 +49,12 @@ export default async function JobTable() {
               <TableCell className="text-right">
                 <EllipsisDropdown>
                   <UpdateJobStatus jobId={job.id} currStatus={job.status} />
-                  <DropdownMenuItem>Edit</DropdownMenuItem>
                   <Link
                   href={`/jobs/${team.id}/${job.id}`}
                   >
                     <DropdownMenuItem className="flex gap-2 items-center">
                       <ExternalLink className="w-4 h-4"/>
-                      Job Posting
+                      View Job
                     </DropdownMenuItem>
                   </Link>
                 </EllipsisDropdown>

@@ -31,7 +31,7 @@ export default function UpdateJobStatus({ jobId, currStatus } : { jobId: string,
     className="z-50"
     onClick={updateStatus}
     >
-      {currStatus === "Active" ? "Archive" : "Unarchive"}
+      {currStatus === "Active" ? "Archive Job" : "Unarchive Job"}
     </DropdownMenuItem>
   )
 }
