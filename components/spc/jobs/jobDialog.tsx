@@ -8,11 +8,13 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 
-import CreateJobForm from "../forms/createJobForm"
+import JobForm from "../forms/jobForm";
+import { job, questions } from "@/types/startblock";
+
 import { DialogTitle } from "@radix-ui/react-dialog";
 
-export default function CreateJob({ children } : { children?: React.ReactNode }) {
-  const [openModal, setOpenModal] = useState(false)
+export default function JobDialog({ children, job, additionalQuestions, customQuestions } : { children?: React.ReactNode, job?: job, additionalQuestions?: questions[], customQuestions?: questions[] }) {
+  const [openModal, setOpenModal] = useState(false);
 
   return (
     <Dialog
@@ -27,7 +29,10 @@ export default function CreateJob({ children } : { children?: React.ReactNode })
       </DialogTrigger>
       <DialogContent className="rounded-none max-w-5xl h-[50rem] overflow-scroll">
         <DialogTitle className="hidden">Create a new job</DialogTitle>
-        <CreateJobForm 
+        <JobForm 
+        job={job}
+        additionalQuestionsList={additionalQuestions as questions[]}
+        customQuestionsList={customQuestions as questions[]}
         closeModal={setOpenModal}
         />
       </DialogContent>

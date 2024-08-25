@@ -22,9 +22,11 @@ import EllipsisDropdown from "@/components/ui/ellipse-dropdown";
 import { DropdownMenuItem } from "@/components/ui/dropdown-menu"
 
 import { questions, job } from "@/types/startblock";
-import { createJob } from "@/lib/job";
+import { createJob, editJob } from "@/lib/job";
 
-export default function CreateJobForm({ closeModal, job } : { closeModal: Function, job?: job }) {
+import { potentialQuestions, customQuestionTypes } from "@/lib/constants";
+
+export default function JobForm({ closeModal, job, additionalQuestionsList, customQuestionsList } : { closeModal: Function, job?: job, additionalQuestionsList: questions[], customQuestionsList: questions[] }) {
   const [step, setStep] = useState(1)
   const [loading, setLoading] = useState(false)
 
@@ -34,49 +36,13 @@ export default function CreateJobForm({ closeModal, job } : { closeModal: Functi
   const [jobLocation, setJobLocation] = useState(job?.location || "")
   const [jobPay, setJobPay] = useState(job?.salary || "")
 
-  const [additionalQuestions, setAdditionalQuestions] = useState<questions[]>([])
-  const [customQuestions, setCustomQuestions] = useState<questions[]>([])
+  const [additionalQuestions, setAdditionalQuestions] = useState<questions[]>(additionalQuestionsList || [])
+  const [customQuestions, setCustomQuestions] = useState<questions[]>(customQuestionsList || [])
   const [question, setQuestion] = useState("")
 
   const router = useRouter()
 
   const requiredQuestions = ["Full name", "Email"]
-  const potentialQuestions= [
-    { 
-      question: "Resume", 
-      type: "F" 
-    }, 
-    {
-      question: "School",
-      type: "SD"
-    },
-    {
-      question: "Linkedin",
-      type: "SA"
-    },
-    {
-      question: "Will you now or in the future require sponsorship for employment visa status?",
-      type: "YN"
-    },
-    {
-      question: "How did you hear about this job?",
-      type: "HDYH"
-    },
-  ]
-  const customQuestionTypes = [
-    {
-      type: "SA",
-      name: "Short answer"
-    },
-    {
-      type: "LA",
-      name: "Long answer"
-    },
-    {
-      type: "YN",
-      name: "Yes or no"
-    },
-  ]
 
 
   function handleAddQuestion(e: React.FormEvent<HTMLFormElement>) {
@@ -84,7 +50,8 @@ export default function CreateJobForm({ closeModal, job } : { closeModal: Functi
 
     setCustomQuestions([...customQuestions, {
       question: question,
-      type: "SA"
+      type: "SA",
+      variety: "Custom"
     }])
 
     return setQuestion("")
@@ -110,10 +77,31 @@ export default function CreateJobForm({ closeModal, job } : { closeModal: Functi
     return router.refresh()
   }
 
+  async function handleEdit() {
+    setLoading(true)
+
+    try {
+      await editJob(
+      jobTitle,
+      jobLocation,
+      jobPay,
+      jobDescription,
+      jobRequirements,
+      additionalQuestions,
+      customQuestions,
+      job?.id as string
+    )
+    } catch (error) {
+      return console.error(error)
+    }
+    closeModal()
+    return router.refresh()
+  }
+
   return (
     <div className="flex justify-between gap-0">
       <div className="w-full h-[46rem] overflow-scroll no-scrollbar">
-        <h1 className="text-3xl font-heading sticky h-10 bg-white top-0">Create a new job</h1>
+        <h1 className="text-3xl font-heading sticky h-10 bg-white top-0">{job ? "Edit job" : "Create a new job"}</h1>
         {step === 1 && (
           <form
           onSubmit={() => setStep(2)}
@@ -304,7 +292,7 @@ export default function CreateJobForm({ closeModal, job } : { closeModal: Functi
               </ActionWord>
               <ActionButton
               className="w-20"
-              onClick={handleSubmit}
+              onClick={job ? handleEdit : handleSubmit}
               disabled={loading}
               >
                 Continue

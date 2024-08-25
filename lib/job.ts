@@ -39,6 +39,42 @@ export async function createJob(
   return;
 }
 
+export async function editJob(
+  jobTitle: string,
+  jobLocation: string,
+  jobPay: string,
+  jobDescription: string,
+  jobRequirements: string,
+  additionalQuestions: questions[],
+  customQuestions: questions[],
+  jobid: string
+): Promise<undefined> {
+  const session = await auth();
+
+  if (!session?.user) {
+    throw new Error("You must be logged in to access this resource.");
+  }
+
+  const userTeam = await getTeamForUser();
+
+  await prisma.job.update({
+    where: {
+      id: jobid,
+      teamId: userTeam?.id as string,
+    },
+    data: {
+      title: jobTitle,
+      location: jobLocation,
+      salary: jobPay,
+      description: jobDescription,
+      requirements: jobRequirements,
+      questions: [...additionalQuestions, ...customQuestions] as any,
+    },
+  });
+
+  return;
+}
+
 export async function getJobById(jobId: string) {
   const session = await auth();
 

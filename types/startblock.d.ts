@@ -26,6 +26,7 @@ export interface job {
 export interface questions {
   question: string;
   type: string;
+  variety: string;
 }
 
 export interface answers {

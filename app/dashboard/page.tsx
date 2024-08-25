@@ -2,7 +2,7 @@ import { getTeamForUser } from "@/lib/team";
 
 import ActivateLink from "@/components/ui/activate-link";
 import JobTable from "@/components/spc/jobs/jobTable";
-import CreateJob from "@/components/spc/jobs/createJob";
+import JobDialog from "@/components/spc/jobs/jobDialog";
 
 export default async function Dashboard() {
 
@@ -25,7 +25,7 @@ export default async function Dashboard() {
       <main className="p-8">
         <div className="flex justify-between">
           <h1 className="text-4xl font-special">Hiring Dashboard</h1>
-          <CreateJob>Create New Job</CreateJob>
+          <JobDialog>Create New Job</JobDialog>
         </div>
         <JobTable />
       </main>
