@@ -17,10 +17,10 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         return nanoid();
       },
       maxAge: 3 * 60,
-      sendVerificationRequest({ token, identifier }) {
+      async sendVerificationRequest({ token, identifier }) {
         const client = new Client(process.env.AUTH_POSTMARK_KEY as string);
 
-        client.sendEmail({
+        await client.sendEmail({
           From: "StartBlock <howdy@useziggy.com>",
           To: identifier,
           Subject: "StartBlock Verification Code",
