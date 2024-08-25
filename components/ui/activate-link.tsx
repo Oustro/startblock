@@ -34,8 +34,8 @@ export default async function ActivateLink({ isOwner, page, teamId } : { isOwner
     ],
     customer: session?.user.stripeId as string,
     mode: 'subscription',
-    success_url: 'http://localhost:3000/dashboard',
-    cancel_url: 'http://localhost:3000/dashboard',
+    success_url: process.env.CURR_HOST+'/dashboard',
+    cancel_url: process.env.CURR_HOST+'/dashboard',
     allow_promotion_codes: true,
     subscription_data: {
       metadata: {

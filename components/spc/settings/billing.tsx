@@ -17,7 +17,7 @@ export default async function TeamBilling({ teamId, isOwner, activated } : { tea
   if (team?.activated) {
     const stripePortalSession = await stripe.billingPortal.sessions.create({
       customer: team?.stripeCustomerId as string,
-      return_url: 'http://localhost:3000/dashboard/settings'
+      return_url: process.env.CURR_HOST+'/dashboard/settings'
     })
 
     portalUrl = stripePortalSession.url as string
@@ -35,8 +35,8 @@ export default async function TeamBilling({ teamId, isOwner, activated } : { tea
       ],
       customer: session?.user.stripeId as string,
       mode: 'subscription',
-      success_url: 'http://localhost:3000/dashboard',
-      cancel_url: 'http://localhost:3000/dashboard/settings',
+      success_url: process.env.CURR_HOST+'/dashboard',
+      cancel_url: process.env.CURR_HOST+'/dashboard/settings',
       allow_promotion_codes: true,
       subscription_data: {
         metadata: {
