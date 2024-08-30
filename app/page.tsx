@@ -1,13 +1,9 @@
-import { auth } from "@/utils/auth"
-
 export default async function Home() {
-  const session = await auth()
 
   return (
-    <main>
-      <p className="font-special text-4xl">The Delightfully Simple ATS</p>
-
-      <p className="mt-4">Matter is the easiest to set up most powerful ATS that gives teams the upperhand when it comes to hiring the best candidates, because the ATS you use matters. </p>
+    <main className="p-8">
+      <h1 className="font-special mt-24 text-7xl">A Delightfully Simple ATS</h1>
+      <p className="mt-4"></p>
     </main>
   );
 }

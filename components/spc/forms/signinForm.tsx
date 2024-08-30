@@ -66,7 +66,7 @@ export default function SigninForm() {
 
   return (
     <div className="h-screen justify-center items-center flex-col flex">
-      <div className="w-96">
+      <div className="mx-8 sm:w-96">
         <h1 className="text-4xl font-heading">Welcome to StartBlock</h1>
         <h3 className="text-lg mt-8 text-our-gray font-heading">We hope you're ready to be delighted by your simple, yet powerful ATS.</h3>
         {step === 1 && (
