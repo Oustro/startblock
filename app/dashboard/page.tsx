@@ -23,9 +23,9 @@ export default async function Dashboard() {
   else {
     return (
       <main className="p-8">
-        <div className="flex justify-between">
+        <div className="sm:flex justify-between">
           <h1 className="text-4xl font-special">Hiring Dashboard</h1>
-          <JobDialog>Create New Job</JobDialog>
+          <JobDialog className="mt-4">Create New Job</JobDialog>
         </div>
         <JobTable />
       </main>

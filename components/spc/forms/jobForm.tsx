@@ -302,9 +302,9 @@ export default function JobForm({ closeModal, job, additionalQuestionsList, cust
         )}
       </div>
 
-      <div className="h-full my-auto border-l border-our-gray mx-4" />
+      <div className="hidden sm:block h-full my-auto border-l border-our-gray mx-4" />
       
-      <div className="w-full overflow-scroll h-[46rem]">
+      <div className="hidden sm:block w-full overflow-scroll h-[46rem]">
 
         {step === 1 && (
           <>

@@ -2,6 +2,8 @@
 
 import { useState } from "react"
 
+import { cn } from "@/lib/utils";
+
 import {
   Dialog,
   DialogContent,
@@ -13,7 +15,7 @@ import { job, questions } from "@/types/startblock";
 
 import { DialogTitle } from "@radix-ui/react-dialog";
 
-export default function JobDialog({ children, job, additionalQuestions, customQuestions } : { children?: React.ReactNode, job?: job, additionalQuestions?: questions[], customQuestions?: questions[] }) {
+export default function JobDialog({ children, job, additionalQuestions, customQuestions, className } : { children?: React.ReactNode, job?: job, additionalQuestions?: questions[], customQuestions?: questions[], className?: string }) {
   const [openModal, setOpenModal] = useState(false);
 
   return (
@@ -23,11 +25,11 @@ export default function JobDialog({ children, job, additionalQuestions, customQu
     >
       <DialogTrigger 
       onClick={() => setOpenModal(true)}
-      className="bg-black text-white hover:bg-off-black disabled:bg-off-black transition-all p-2 font-heading text-sm"
+      className={cn("bg-black text-white hover:bg-off-black disabled:bg-off-black transition-all p-2 font-heading text-sm", className)}
       >
         {children}
       </DialogTrigger>
-      <DialogContent className="rounded-none max-w-5xl h-[50rem] overflow-scroll">
+      <DialogContent className="rounded-none w-full sm:max-w-5xl h-full sm:h-[50rem] overflow-scroll">
         <DialogTitle className="hidden">Create a new job</DialogTitle>
         <JobForm 
         job={job}

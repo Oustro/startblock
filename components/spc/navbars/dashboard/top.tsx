@@ -13,7 +13,7 @@ import {
 
 import Link from "next/link";
 
-import { Slash } from 'lucide-react';
+import { Slash, Menu } from 'lucide-react';
 
 import { getTeamForUser } from "@/lib/team";
 
@@ -24,8 +24,8 @@ export default async function TopDashboardNav() {
 
   return (
     <nav className="w-full h-20 z-20 fixed top-0 bg-white flex justify-between shadow items-center px-6">
-      <div className="fixed top-0 left-24 w-full h-20 -z-10 border-b border-our-gray" />
-      <div className="flex items-center gap-8">
+      <div className="hidden sm:block fixed top-0 left-24 w-full h-20 -z-10 border-b border-our-gray" />
+      <div className="hidden sm:flex items-center gap-8">
         <Logo 
         link="/dashboard"
         />
@@ -47,6 +47,39 @@ export default async function TopDashboardNav() {
             Activation Required
           </p>
         )}
+      </div>
+      <div className="sm:hidden">
+        <DropdownMenu>
+          <DropdownMenuTrigger className="outline-none">
+            <Menu className="h-8 w-8" />
+          </DropdownMenuTrigger>
+          <DropdownMenuContent
+          align="start"
+          className="mt-2 rounded-none p-2"
+          >
+            <Link
+            href="/dashboard"
+            >
+              <DropdownMenuItem>
+                Dashboard
+              </DropdownMenuItem>
+            </Link>
+            <Link
+            href={`/jobs/${team?.publicId}`}
+            >
+              <DropdownMenuItem>
+                Visit job board
+              </DropdownMenuItem>
+            </Link>
+            <Link
+            href="/dashboard/settings"
+            >
+              <DropdownMenuItem>
+                Settings
+              </DropdownMenuItem>
+            </Link>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
       <div className="flex items-center gap-8">
         <Link

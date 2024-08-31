@@ -26,7 +26,7 @@ export default async function DashboardLayout({ children,
     <main>
       <TopDashboardNav />
       <SideDashboardNav publicId={team?.publicId as string} />
-      <div className="ml-24 mt-20">
+      <div className="sm:ml-24 mt-20">
         {children}
       </div>
     </main>
