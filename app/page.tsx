@@ -14,20 +14,24 @@ export default async function Home() {
           Sign in
         </ActionButton>
       </Link>
-      <h1 className='font-heading mt-8 text-3xl'>Hiring startups using StartBlock.</h1>
-      <h3 className="text-lg mt-4 flex items-center gap-2">Earth or Remote</h3>
-      <h3 className="text-lg mt-4">$10 / mo</h3>
-      <h3 className="mt-8 font-heading text-lg">Description</h3>
-      <p className="mt-2 whitespace-pre-wrap">No gimmicks, no frills.</p>
-      <p className="mt-5">StartBlock is a feature conscious ATS that does what your startup needs for only $10 / mo.</p>
-      <p className="mt-5">Post unlimited jobs, collaborate with your team (no member limits), sort and score applicants, and hire the best talent.</p>
-      <h3 className="mt-8 font-heading text-lg">Requirements</h3>
-      <p className="mt-2">- Startup or small business.</p>
-      <p className="mt-3">- Wants simplicity and a delightful experience for themselves and applicants.</p>
-      <p className="mt-3">- Hiring talent online through your custom job board on StartBlock or embedded forms on your own site.</p>
-      <p className="mt-3">- Don't want to spend a fortune on an ATS or have a limited budget.</p>
+      <p className="mt-8 text-our-gray text-sm font-highlight">Application for</p>
+      <h1 className='font-heading text-3xl'>StartBlock Partner</h1>
+      <p className="mt-5 text-our-gray text-sm font-highlight">Location</p>
+      <h3 className="text-lg flex items-center gap-2">Earth (Remote available)</h3>
+      <p className="mt-5 text-our-gray text-sm font-highlight">Cost</p>
+      <h3 className="text-lg">$10 / mo</h3>
+      <h3 className="mt-8 text-our-gray text-sm font-highlight">Job Description</h3>
+      <p className="mt-2">No gimmicks, no frills.</p>
+      <p className="mt-5">StartBlock is a feature conscious ATS that focuses on providing you and your applicants the best and most straightforward experience possible.</p>
+      <p className="mt-5">Post unlimited jobs, collaborate with any sized team, sort and score applicants, and hire the best talent.</p>
+      <p className="mt-5">Join today for only $10 / mo and cancel anytime.</p>
+      <h3 className="mt-8 text-our-gray text-sm font-highlight">Requirements for applicants</h3>
+      <p className="mt-2">Is operating startup or small business that is looking to hire talent.</p>
+      <p className="mt-3">Wants simplicity and a delightful experience for themselves and applicants.</p>
+      <p className="mt-3">Is hiring talent online through the custom StartBlock job board or using the StartBlock Embed SDK.</p>
+      <p className="mt-3">Doesn't want to spend a fortune on an ATS or has a limited budget.</p>
       <Link href="/signin">
-        <ActionButton className="mt-6">
+        <ActionButton className="mt-12">
           Start hiring with StartBlock
         </ActionButton>
       </Link>
