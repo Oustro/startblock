@@ -15,7 +15,7 @@ export default async function Jobpage({ params } : { params: { publicId: string 
 
   if (!jobs[0]?.team.activated || !jobs) {
     return (
-      <main className='flex flex-col h-screen w-fit mx-12 justify-center text-left'>
+      <main className='flex flex-col h-screen w-fit mx-8 sm:mx-auto justify-center text-left'>        
         <h1 className='font-special text-xl'>Unfortunately, this job board is not available.</h1>
         <h1 className='mt-4 text-our-gray'>Please check back again soon.</h1>
       </main>

@@ -20,7 +20,7 @@ export default async function Home() {
       <h3 className="text-lg flex items-center gap-2">Earth (Remote available)</h3>
       <p className="mt-5 text-our-gray text-sm font-highlight">Cost</p>
       <h3 className="text-lg">$10 / mo</h3>
-      <h3 className="mt-8 text-our-gray text-sm font-highlight">Job Description</h3>
+      <h3 className="mt-8 text-our-gray text-sm font-highlight">Job description</h3>
       <p className="mt-2">No gimmicks, no frills.</p>
       <p className="mt-5">StartBlock is a feature conscious ATS that focuses on providing you and your applicants the best and most straightforward experience possible.</p>
       <p className="mt-5">Post unlimited jobs, collaborate with any sized team, sort and score applicants, and hire the best talent.</p>

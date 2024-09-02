@@ -107,7 +107,7 @@ export default function JobForm({ closeModal, job, additionalQuestionsList, cust
           onSubmit={() => setStep(2)}
           >
             <p className="mt-2 text-our-gray">All fields are required.</p>
-            <h3 className="mt-6 font-heading">Title</h3>
+            <h3 className="mt-6 font-heading">Job title</h3>
             <Input 
             type="text" 
             placeholder="Enter the job title..." 
@@ -309,13 +309,15 @@ export default function JobForm({ closeModal, job, additionalQuestionsList, cust
         {step === 1 && (
           <>
             <p className="w-full bg-slate-100 p-4 border border-our-gray text-center font-special text-our-gray">This is a preview of the job post.</p>
-            <h1 className={`text-3xl mt-6 font-heading ${!jobTitle && "text-our-gray" }`}>{jobTitle || "Job title"}</h1>
-            <h3 className={`text-lg mt-4 ${!jobLocation && "text-our-gray" }`}>{jobLocation || "Location"}</h3>
-            <h3 className={`text-lg mt-4 ${!jobPay && "text-our-gray" }`}>{jobPay ? "$"+jobPay : "Salary"}</h3>
-            <h3 className="mt-8 font-heading text-lg">Description</h3>
-            <p className={`mt-2 whitespace-pre-wrap ${!jobDescription && "text-our-gray" }`}>{jobDescription || "Job description"}</p>
-            <h3 className="mt-8 font-heading text-lg">Requirements</h3>
-            <p className={`mt-2 whitespace-pre-wrap ${!jobRequirements && "text-our-gray" }`}>{jobRequirements || "Job requirements"}</p>
+            <h1 className={`text-3xl mt-6 font-heading ${!jobTitle && "text-our-gray" }`}>{jobTitle || "--"}</h1>
+            <h3 className="mt-4 text-our-gray text-sm font-highlight">Location</h3>
+            <h3 className={`text-lg ${!jobLocation && "text-our-gray" }`}>{jobLocation || "--"}</h3>
+            <h3 className="mt-4 text-our-gray text-sm font-highlight">Salary</h3>
+            <h3 className={`text-lg ${!jobPay && "text-our-gray" }`}>{jobPay ? "$"+jobPay : "--"}</h3>
+            <h3 className="mt-8 text-our-gray text-sm font-highlight">Job description</h3>
+            <p className={`mt-2 whitespace-pre-wrap ${!jobDescription && "text-our-gray" }`}>{jobDescription || "--"}</p>
+            <h3 className="mt-8 text-our-gray text-sm font-highlight">Requirements for applicants</h3>
+            <p className={`mt-2 whitespace-pre-wrap ${!jobRequirements && "text-our-gray" }`}>{jobRequirements || "--"}</p>
           </>
         )}
 
