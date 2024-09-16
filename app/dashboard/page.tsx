@@ -25,7 +25,7 @@ export default async function Dashboard() {
       <main className="p-8">
         <div className="sm:flex justify-between">
           <h1 className="text-4xl font-special">Hiring Dashboard</h1>
-          <JobDialog className="mt-4">Create New Job</JobDialog>
+          <JobDialog className="mt-4 hidden sm:flex">Create New Job</JobDialog>
         </div>
         <JobTable />
       </main>

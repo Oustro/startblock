@@ -32,7 +32,7 @@ export default function ApplicantTableRow({ applicant } : {applicant: applicant 
               <p className="text-sm font-heading">Applied</p>
               <p className="text-sm text-our-gray mt-1">{applicant.createdAt.toDateString()}</p>
               <p className="text-sm mt-4 font-heading">Origin</p>
-              <p className="text-sm text-our-gray mt-1">startblock.com</p>
+              <p className="text-sm text-our-gray mt-1">Job Board</p>
             </EllipsisDropdown>
           </TableCell>
         </TableRow>

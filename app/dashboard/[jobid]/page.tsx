@@ -44,6 +44,7 @@ export default async function JobDashboard({ params } : { params: { jobid: strin
         job={job}
         additionalQuestions={additionalQuestions}
         customQuestions={customQuestions}
+        className="hidden sm:flex"
         >
           Edit Job
         </JobDialog>

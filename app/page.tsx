@@ -1,5 +1,6 @@
 import LogoNav from "@/components/spc/navbars/logoNav";
 import ActionButton from "@/components/ui/action-button";
+import Footer from "@/components/ui/footer";
 
 import Link from "next/link";
 
@@ -35,6 +36,7 @@ export default async function Home() {
           Start hiring with StartBlock
         </ActionButton>
       </Link>
+      <Footer />
     </main>
   );
 }
