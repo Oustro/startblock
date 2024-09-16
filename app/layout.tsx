@@ -5,6 +5,10 @@ import localFont from 'next/font/local'
 export const metadata: Metadata = {
   title: "Startblock | The delightfully simple ATS",
   description: "The delightfully simple and affordable ATS",
+  openGraph: {
+    images: '/startblock-og.png',
+  },
+  metadataBase: new URL("https://www.startblock.me"),
 };
 
 const heading = localFont({
