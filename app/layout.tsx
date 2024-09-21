@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "../styles/globals.css";
 import localFont from 'next/font/local'
+import { Analytics } from "@vercel/analytics/react"
 
 export const metadata: Metadata = {
   title: "Startblock | The delightfully simple ATS",
@@ -40,6 +41,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`font-text ${heading.variable} ${text.variable} ${accent.variable} ${special.variable}`}>
         {children}
+        <Analytics />
       </body>
     </html>
   );
