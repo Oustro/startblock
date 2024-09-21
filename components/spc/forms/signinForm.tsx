@@ -118,8 +118,10 @@ export default function SigninForm() {
           </form>
         )}
 
+        <p className="mt-4 text-xs mx-auto">By continuing, you agree to the Terms of Service and Privacy Policy.</p>
+
         {error && (
-          <p className="text-red-500 fixed mt-4 mx-auto">{error}</p>
+          <p className="text-red-500 fixed mt-12 mx-auto">{error}</p>
         )}
       </div>
     </div>
