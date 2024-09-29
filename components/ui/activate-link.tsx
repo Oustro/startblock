@@ -32,11 +32,15 @@ export default async function ActivateLink({ isOwner, page, teamId } : { isOwner
         price: process.env.STRIPE_INTERVIEW_ID as string,
       }
     ],
+    discounts: [
+      {
+        coupon: process.env.STRIPE_COUPON_ID as string
+      }
+    ],
     customer: session?.user.stripeId as string,
     mode: 'subscription',
     success_url: process.env.CURR_HOST+'/dashboard',
     cancel_url: process.env.CURR_HOST+'/dashboard',
-    allow_promotion_codes: true,
     subscription_data: {
       metadata: {
         teamId: teamId
@@ -48,7 +52,7 @@ export default async function ActivateLink({ isOwner, page, teamId } : { isOwner
     <div className="relative">
       <div className="border border-our-gray shadow w-96 flex flex-col z-20 justify-center mx-auto mt-48 bg-white border p-8 h-56 text-center">
         <p className="text-2xl font-heading">Activate your team.</p>
-        <p className="text-our-gray mt-4">Activate your team to begin using StartBlock's deligthfully simple ATS.</p>
+        <p className="text-our-gray mt-4">Activate your team on StartBlock with a 1 month free trial, cancel anytime.</p>
         {isOwner && (
           <Link 
           href={stripeSession.url as string}
