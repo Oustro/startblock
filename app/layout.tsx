@@ -4,8 +4,8 @@ import localFont from 'next/font/local'
 import { Analytics } from "@vercel/analytics/react"
 
 export const metadata: Metadata = {
-  title: "Startblock | The delightfully simple ATS",
-  description: "The delightfully simple and affordable ATS",
+  title: "Startblock | The delightfully simple hiring platform for startups",
+  description: "The delightfully simple and affordable hiring platform for startups.",
   openGraph: {
     images: '/startblock-og.png',
   },
