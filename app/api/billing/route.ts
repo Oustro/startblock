@@ -10,8 +10,8 @@ import { Redis } from "@upstash/redis";
 
 export async function POST(request: NextRequest) {
   const redis = new Redis({
-    url: process.env.UPSTASH_URL || "",
-    token: process.env.UPSTASH_TOKEN || "",
+    url: process.env.REDIS_URL || "",
+    token: process.env.REDIS_PASS || "",
   });
 
   const ratelimit = new Ratelimit({
