@@ -4,7 +4,7 @@ StartBlock is the open source hiring platform. StartBlock was designed to be sim
 
 ## Contributing
 
-We encourage contributing to StartBlock! If you encounter a bug or think of a feature [check out our contributing guide.](https://github.com/Oustro/ziggy/blob/main/CONTRIBUTING.md)
+We encourage contributing to StartBlock! If you encounter a bug or think of a feature [check out our contributing guide.](https://github.com/Oustro/startblock/blob/main/CONTRIBUTING.md)
 
 ### Thanks to these folks for contributing!
 
