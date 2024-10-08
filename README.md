@@ -1,6 +1,6 @@
 ## Introduction
 
-StartBlock is the open source hiring platform. StartBlock was designed to be simple, cheap, and all most importantly, deligthful.
+StartBlock is the open source hiring platform. StartBlock was designed to be simple, cheap, and all most importantly, delightful.
 
 ## Contributing
 
